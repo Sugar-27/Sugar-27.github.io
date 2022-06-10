@@ -4,9 +4,16 @@
     <link>https://Sugar-27.github.io/</link>
     <description>欢迎来到Sugar的博客小站</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>45682h@mail.com (Sugar)</managingEditor>
-      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Fri, 10 Jun 2022 19:05:47 &#43;0800</lastBuildDate>
+      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Fri, 10 Jun 2022 21:00:04 &#43;0800</lastBuildDate>
       <atom:link href="https://Sugar-27.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>常用C函数</title>
+  <link>https://Sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0/</link>
+  <pubDate>Fri, 10 Jun 2022 21:00:04 &#43;0800</pubDate>
+  <author>Sugar</author>
+  <guid>https://Sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0/</guid>
+  <description><![CDATA[]]></description>
+</item><item>
   <title>First_post</title>
   <link>https://Sugar-27.github.io/posts/first_post/</link>
   <pubDate>Fri, 10 Jun 2022 19:05:47 &#43;0800</pubDate>

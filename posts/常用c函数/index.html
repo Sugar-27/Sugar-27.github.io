@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>常用C函数 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="" />
+<meta name="keywords" content="C/C&#43;&#43;" /><meta itemprop="name" content="常用C函数">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-06-10T21:00:04+08:00" />
+<meta itemprop="dateModified" content="2022-06-10T21:00:04+08:00" />
+<meta itemprop="wordCount" content="2027"><meta itemprop="image" content="https://Sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="C/C&#43;&#43;," /><meta property="og:title" content="常用C函数" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0/" /><meta property="og:image" content="https://Sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-10T21:00:04+08:00" />
+<meta property="article:modified_time" content="2022-06-10T21:00:04+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="常用C函数"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="欢迎来到Sugar的博客小站">
+<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0/" /><link rel="prev" href="https://Sugar-27.github.io/posts/first_post/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "常用C函数",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/Sugar-27.github.io\/posts\/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0\/"
+    },"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  2027 ,
+    "url": "https:\/\/Sugar-27.github.io\/posts\/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0\/","datePublished": "2022-06-10T21:00:04+08:00","dateModified": "2022-06-10T21:00:04+08:00","publisher": {
+      "@type": "Organization",
+      "name": "Sugar"},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": ""
+  }
+  </script></head>
+  <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><span class="header-title-text">欢迎来到Sugar的博客小站</span></a></div>
+    <nav>
+      <ul class="menu"><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><span class="header-title-text">欢迎来到Sugar的博客小站</span></a></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header>
+<div class="search-dropdown desktop">
+  <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+  <div id="search-dropdown-mobile"></div>
+</div>
+<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+  </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">常用C函数</h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://github.com/Sugar-27"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer author"
+  
+  
+    class="author"
+  
+  
+><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
+    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
+    data-sizes="auto"
+    alt="Sugar"
+    title="Sugar" />&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;C/C++</a></span></div>
+      <div class="post-meta-line"><span title=2022-06-10&#32;21:00:04>
+            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-10" >2022-06-10</time>
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 2027 字&nbsp;
+        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+    </div><div class="details toc" id="toc-static" kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#文件类函数">文件类函数：</a></li>
+        <li><a href="#字符串类函数">字符串类函数：</a></li>
+        <li><a href="#时间类函数">时间类函数：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="常用c函数">常用C函数</h1>
+<h3 id="文件类函数">文件类函数：</h3>
+<ul>
+<li>
+<p>fopenh函数（打开文件）</p>
+<ul>
+<li>
+<p>描述：C 库函数<code> FILE *fopen(const char filename, const char mode)</code>使用给定的模式 <strong>mode</strong> 打开 <strong>filename</strong> 所指向的文件。</p>
+</li>
+<li>
+<p>声明：<code>FILE *fopen(const char *filename, const char *mode)</code></p>
+</li>
+<li>
+<p>参数</p>
+<ul>
+<li>
+<p><strong>filename</strong> &ndash; 这是 C 字符串，包含了要打开的文件名称。</p>
+</li>
+<li>
+<p><strong>mode</strong> &ndash; 这是 C 字符串，包含了文件访问模式，模式如下</p>
+</li>
+</ul>
+</li>
+<li>
+<p>模式：</p>
+<ol>
+<li>
+<p>&ldquo;r&rdquo;  打开一个用于读取的文件。该文件必须存在。</p>
+</li>
+<li>
+<p>&ldquo;w&rdquo; 创建一个用于写入的空文件。如果文件名称与已存在的文件相同，则会删除已有文件的内容，文件被视为一个新的空文件。</p>
+</li>
+<li>
+<p>&ldquo;a&rdquo;  追加到一个文件。写操作向文件末尾追加数据。如果文件不存在，则创建文件。</p>
+</li>
+<li>
+<p>&ldquo;r+&rdquo; 打开一个用于更新的文件，可读取也可写入。该文件必须存在。</p>
+</li>
+<li>
+<p>&ldquo;w+&rdquo; 创建一个用于读写的空文件。</p>
+</li>
+<li>
+<p>&ldquo;a+&rdquo; 打开一个用于读取和追加的文件。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>返回值：该函数返回一个 FILE 指针。否则返回 NULL，且设置全局变量 errno 来标识错误。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>stat函数（检查文件属性）</p>
+<ul>
+<li>
+<p>头文件：<code>#include&lt;sys/stat.h&gt; </code> 、<code>#include&lt;uninstd.h&gt;</code></p>
+</li>
+<li>
+<p>声明：<code>int stat(const char * file_name, struct stat *buf);</code></p>
+</li>
+<li>
+<p>描述：stat()用来将参数file_name 所指的文件状态, 复制到参数buf 所指的结构中</p>
+</li>
+<li>
+<p>stat结构体说明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">stat</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dev_t</span> <span class="n">st_dev</span><span class="p">;</span> <span class="c1">//device 文件的设备编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ino_t</span> <span class="n">st_ino</span><span class="p">;</span> <span class="c1">//inode 文件的i-node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">mode_t</span> <span class="n">st_mode</span><span class="p">;</span> <span class="c1">//protection 文件的类型和存取的权限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">nlink_t</span> <span class="n">st_nlink</span><span class="p">;</span> <span class="c1">//number of hard links 连到该文件的硬连接数目, 刚建立的文件值为1.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">uid_t</span> <span class="n">st_uid</span><span class="p">;</span> <span class="c1">//user ID of owner 文件所有者的用户识别码 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">gid_t</span> <span class="n">st_gid</span><span class="p">;</span> <span class="c1">//group ID of owner 文件所有者的组识别码 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">dev_t</span> <span class="n">st_rdev</span><span class="p">;</span> <span class="c1">//device type 若此文件为装置设备文件, 则为其设备编号 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">off_t</span> <span class="n">st_size</span><span class="p">;</span> <span class="c1">//total size, in bytes 文件大小, 以字节计算 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">st_blksize</span><span class="p">;</span> <span class="c1">//blocksize for filesystem I/O 文件系统的I/O 缓冲区大小. 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">st_blocks</span><span class="p">;</span> <span class="c1">//number of blocks allocated 占用文件区块的个数, 每一区块大小为512 个字节. 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">time_t</span> <span class="n">st_atime</span><span class="p">;</span> <span class="c1">//time of lastaccess 文件最近一次被存取或被执行的时间, 一般只有在用mknod、 utime、read、write 与tructate 时改变.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">time_t</span> <span class="n">st_mtime</span><span class="p">;</span> <span class="c1">//time of last modification 文件最后一次被修改的时间, 一般只有在用mknod、utime 和write时才会改变
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">time_t</span> <span class="n">st_ctime</span><span class="p">;</span> <span class="c1">//time of last change i-node 最近一次被更改的时间, 此参数会在文件所有者、组、权限被更改时更新 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>stat结构体中的st_mode种类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">S_IFMT</span> <span class="mo">0170000</span> <span class="err">文件类型的位遮罩</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFSOCK</span> <span class="mo">0140000</span> <span class="n">scoket</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFLNK</span> <span class="mo">0120000</span> <span class="err">符号连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFREG</span> <span class="mo">0100000</span> <span class="err">一般文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFBLK</span> <span class="mo">0060000</span> <span class="err">区块装置</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFDIR</span> <span class="mo">0040000</span> <span class="err">目录</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFCHR</span> <span class="mo">0020000</span> <span class="err">字符装置</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IFIFO</span> <span class="mo">0010000</span> <span class="err">先进先出</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISUID</span> <span class="mo">04000</span> <span class="err">文件的</span> <span class="p">(</span><span class="n">set</span> <span class="n">user</span><span class="o">-</span><span class="n">id</span> <span class="n">on</span> <span class="n">execution</span><span class="p">)</span><span class="err">位</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISGID</span> <span class="mo">02000</span> <span class="err">文件的</span> <span class="p">(</span><span class="n">set</span> <span class="n">group</span><span class="o">-</span><span class="n">id</span> <span class="n">on</span> <span class="n">execution</span><span class="p">)</span><span class="err">位</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISVTX</span> <span class="mo">01000</span> <span class="err">文件的</span><span class="n">sticky</span> <span class="err">位</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IRUSR</span> <span class="p">(</span><span class="n">S_IREAD</span><span class="p">)</span> <span class="mo">00400</span> <span class="err">文件所有者具可读取权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IWUSR</span> <span class="p">(</span><span class="n">S_IWRITE</span><span class="p">)</span><span class="mo">00200</span> <span class="err">文件所有者具可写入权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IXUSR</span> <span class="p">(</span><span class="n">S_IEXEC</span><span class="p">)</span> <span class="mo">00100</span> <span class="err">文件所有者具可执行权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IRGRP</span> <span class="mo">00040</span> <span class="err">用户组具可读取权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IWGRP</span> <span class="mo">00020</span> <span class="err">用户组具可写入权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IXGRP</span> <span class="mo">00010</span> <span class="err">用户组具可执行权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IROTH</span> <span class="mo">00004</span> <span class="err">其他用户具可读取权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IWOTH</span> <span class="mo">00002</span> <span class="err">其他用户具可写入权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_IXOTH</span> <span class="mo">00001</span> <span class="err">其他用户具可执行权限上述的文件类型在</span> <span class="n">POSIX</span> <span class="err">中定义了检查这些类型的宏定义</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISLNK</span> <span class="p">(</span><span class="n">st_mode</span><span class="p">)</span> <span class="err">判断是否为符号连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISREG</span> <span class="p">(</span><span class="n">st_mode</span><span class="p">)</span> <span class="err">是否为一般文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISDIR</span> <span class="p">(</span><span class="n">st_mode</span><span class="p">)</span> <span class="err">是否为目录</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISCHR</span> <span class="p">(</span><span class="n">st_mode</span><span class="p">)</span> <span class="err">是否为字符装置文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISBLK</span> <span class="p">(</span><span class="n">s3e</span><span class="p">)</span> <span class="err">是否为先进先出</span>
+</span></span><span class="line"><span class="cl"><span class="n">S_ISSOCK</span> <span class="p">(</span><span class="n">st_mode</span><span class="p">)</span> <span class="err">是否为</span><span class="n">socket</span> <span class="err">若一目录具有</span><span class="n">sticky</span> <span class="err">位</span> <span class="p">(</span><span class="n">S_ISVTX</span><span class="p">),</span> <span class="err">则表示在此目录下的文件只能</span> <span class="err">被该文件所有者、此目录所有者或</span><span class="n">root</span> <span class="err">来删除或改名</span><span class="p">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>返回值：执行成功则返回0，失败返回-1，错误代码存于errno</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符串类函数">字符串类函数：</h3>
+<ul>
+<li>
+<p>strspn函数（检索第一个不在范围内的字符）</p>
+<ul>
+<li>
+<p>描述：检索字符串 <strong>str1</strong> 中第一个不在字符串 <strong>str2</strong> 中出现的字符下标</p>
+</li>
+<li>
+<p>声明：<code>size_t strspn(const char *str1, const char *str2)</code></p>
+</li>
+<li>
+<p>参数：</p>
+<ul>
+<li>
+<p>str1 &ndash; 要被检索的 C 字符串</p>
+</li>
+<li>
+<p>str2 &ndash; 该字符串包含了要在 str1 中进行匹配的字符列表</p>
+</li>
+</ul>
+</li>
+<li>
+<p>返回值：返回 str1 中第一个不在字符串 str2 中出现的字符下标</p>
+</li>
+</ul>
+</li>
+<li>
+<p>strcasecmp函数（忽略大小写比较两个字符串）</p>
+<ul>
+<li>
+<p>头文件：<code>#include &lt;strings.h&gt;</code></p>
+</li>
+<li>
+<p>描述：忽略大小比较两个字符串是否相同</p>
+</li>
+<li>
+<p>声明：<code> int strcasecmp (const char *s1, const char *s2);</code></p>
+</li>
+<li>
+<p>返回值：若参数s1和s2字符串相等则返回0。s1大于s2则返回大于0 的值，s1 小于s2 则返回小于0的值</p>
+</li>
+</ul>
+</li>
+<li>
+<p>strcmp函数（比较两个字符串)</p>
+<ul>
+<li>
+<p>描述：把 <strong>str1</strong> 所指向的字符串和 <strong>str2</strong> 所指向的字符串进行比较</p>
+</li>
+<li>
+<p>声明：<code>int strcmp(const char *str1, const char *str2)</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>strncmp函数（比较限定字节数的两个字符串）</p>
+<ul>
+<li>
+<p>描述：把 <strong>str1</strong> 和 <strong>str2</strong> 进行比较，<strong>最多</strong>比较前 <strong>n</strong> 个字节（换言之其实比较的长度是<code>min(n, strlen(str2))</code>)</p>
+</li>
+<li>
+<p>声明：<code>int strncmp(const char *str1, const char *str2, size_t n)</code></p>
+</li>
+<li>
+<p>参数：</p>
+<ul>
+<li>
+<p><strong>str1</strong> &ndash; 要进行比较的第一个字符串。</p>
+</li>
+<li>
+<p><strong>str2</strong> &ndash; 要进行比较的第二个字符串。</p>
+</li>
+<li>
+<p><strong>n</strong> &ndash; 要比较的最大字符数。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>
+<p>如果返回值 &lt; 0，则表示 str1 小于 str2。</p>
+</li>
+<li>
+<p>如果返回值 &gt; 0，则表示 str1 大于 str2。</p>
+</li>
+<li>
+<p>如果返回值 = 0，则表示 str1 等于 str2。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="时间类函数">时间类函数：</h3>
+<ul>
+<li>
+<p>gettimeofday函数（获取当前时间）</p>
+<ul>
+<li>
+<p>描述：在C语言中可以使用函数gettimeofday()函数来得到时间，它的精度可以达到微秒。它把目前的时间用tv 结构体返回，当地时区的信息则放到tz所指的结构中</p>
+</li>
+<li>
+<p>声明：<code>int gettimeofday(struct  timeval*tv,struct  timezone *tz)</code></p>
+</li>
+<li>
+<p>结构体说明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span>  <span class="nc">timeval</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">long</span>  <span class="n">tv_sec</span><span class="p">;</span><span class="cm">/*秒*/</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">long</span>  <span class="n">tv_usec</span><span class="p">;</span><span class="cm">/*微妙*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">；</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span>  <span class="nc">timezone</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">tz_minuteswest</span><span class="p">;</span><span class="cm">/*和greenwich 时间差了多少分钟*/</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">tz_dsttime</span><span class="p">;</span><span class="cm">/*type of DST correction*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ol>
+<li>在gettimeofday()函数中tv或者tz都可以为空。如果为空则就不返回其对应的结构体</li>
+</ol>
+</li>
+<li>
+<p>返回值：函数执行成功后返回0，失败后返回-1，错误代码存于errno中</p>
+</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-06-10&#32;21:00:04>更新于 2022-06-10</span>
+      </div>
+      <div class="post-info-license "></div>
+    </div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/first_post/" class="prev" rel="prev" title="First_post"><i class="fa-solid fa-angle-left fa-fw"></i>First_post</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer" title="Hugo 0.98.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/Lruihao/FixIt" target="_blank" rel="external nofollow noopener noreffer" title="FixIt v0.2.15-RC"><img class="fixit-icon" src="/images/fixit.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div></div>
+  </footer></div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+      <i class="fa-solid fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+      <i class="fa-solid fa-comment fa-fw"></i>
+    </a>
+  </div><div id="mask"></div>
+</div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+</html>
