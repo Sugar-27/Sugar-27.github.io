@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>iOS-UITableView使用指南 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="UITableView使用指南，速查手册，快速上手" />
+<meta name="keywords" content="iOS" /><meta itemprop="name" content="iOS-UITableView使用指南">
+<meta itemprop="description" content="UITableView使用指南，速查手册，快速上手"><meta itemprop="datePublished" content="2022-08-17T23:43:05+08:00" />
+<meta itemprop="dateModified" content="2022-08-17T23:43:05+08:00" />
+<meta itemprop="wordCount" content="3328"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="iOS," /><meta property="og:title" content="iOS-UITableView使用指南" />
+<meta property="og:description" content="UITableView使用指南，速查手册，快速上手" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><meta property="og:image" content="http://sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-17T23:43:05+08:00" />
+<meta property="article:modified_time" content="2022-08-17T23:43:05+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="iOS-UITableView使用指南"/>
+<meta name="twitter:description" content="UITableView使用指南，速查手册，快速上手"/>
+<meta name="application-name" content="欢迎来到Sugar的博客小站">
+<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="prev" href="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "iOS-UITableView使用指南",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/sugar-27.github.io\/posts\/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/"
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "iOS","wordcount":  3328 ,
+    "url": "http:\/\/sugar-27.github.io\/posts\/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/","datePublished": "2022-08-17T23:43:05+08:00","dateModified": "2022-08-17T23:43:05+08:00","publisher": {
+      "@type": "Organization",
+      "name": "Sugar"},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": "UITableView使用指南，速查手册，快速上手"
+  }
+  </script></head>
+  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="欢迎来到Sugar的博客小站"
+    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header>
+<div class="search-dropdown desktop">
+  <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+  <div id="search-dropdown-mobile"></div>
+</div>
+<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+  </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">iOS-UITableView使用指南</h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://github.com/Sugar-27"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer author"
+  
+  
+    class="author"
+  
+  
+><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
+    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
+    data-sizes="auto"
+    alt="Sugar"
+    title="Sugar" />&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/ios/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;iOS</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-17&#32;23:43:05>
+            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-17" >2022-08-17</time>
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 3328 字&nbsp;
+        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+    </div><div class="details toc" id="toc-static" kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#基本介绍">基本介绍</a>
+      <ul>
+        <li><a href="#风格样式">风格样式：</a></li>
+        <li><a href="#单元格cell">单元格Cell</a>
+          <ul>
+            <li><a href="#关于cell的重用">关于Cell的重用</a></li>
+            <li><a href="#cell的ui和布局">Cell的UI和布局</a></li>
+            <li><a href="#cell的属性">Cell的属性</a>
+              <ul>
+                <li><a href="#accessoryview">accessoryView</a></li>
+                <li><a href="#cell的分割线">Cell的分割线</a></li>
+                <li><a href="#隐藏部分cell的分割线">隐藏部分Cell的分割线</a></li>
+                <li><a href="#cell选中样式">Cell选中样式</a></li>
+              </ul>
+            </li>
+            <li><a href="#uitableview的使用">UITableView的使用：</a></li>
+            <li><a href="#datasource数据源需要在controller引入uitableviewdatasource协议">DataSource数据源：需要在Controller引入UITableViewDataSource协议</a></li>
+            <li><a href="#uitableviewdelegate需要在controller引入uitableviewdelegate协议">UITableViewDelegate：需要在Controller引入UITableViewDelegate协议</a></li>
+            <li><a href="#uitableview的一些常规函数功能使用">UITableView的一些常规函数/功能使用</a></li>
+            <li><a href="#tableview的性能优化">TableView的性能优化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="uitableview使用指南">UITableView使用指南</h1>
+<h2 id="概述">概述</h2>
+<p>一般遇到大量相同结构的视图进行同一方向排列时，比如一般app的设置页面、通讯录等，使用UITableView是一个非常合适的方案。</p>
+<h2 id="基本介绍">基本介绍</h2>
+<h3 id="风格样式">风格样式：</h3>
+<p>这个属性是UITableView最基本的属性，共有两种</p>
+<ul>
+<li>
+<p>UITableViewStylePlain：默认样式</p>
+<ul>
+<li>
+<p>在 <strong>plain</strong> 模式下，如果 <strong>tableview</strong> 有多个 <strong>section</strong>（分区、分组），组与组之间默认是没有间距的。</p>
+</li>
+<li>
+<p>同时组头或组尾会有 <strong>sticky</strong> 效果（粘性效果、悬停效果），即表格滚动时组头与组尾会自动停留，而不是跟随单元格一同移动。</p>
+</li>
+<li>
+<p>同时plain模式下的tableView可以有一个section索引，作为一个bar在table的右边(例如A ~ Z)。你可以点击一个特定的标签，跳转到目标section。</p>
+</li>
+<li>
+<p>例如：iOS中「通讯录」就是典型应用</p>
+<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343278.png" alt="1280X1280" style="zoom:50%;" />
+</li>
+</ul>
+</li>
+<li>
+<p>UITableViewStyleGrouped：分组样式</p>
+<ul>
+<li>
+<p>在 <strong>grouped</strong> 模式下，如果 <strong>tableview</strong> 有多个 <strong>section</strong>，组与组之间默认是有间距的。</p>
+</li>
+<li>
+<p>在表格滚动的同时组头与组尾会随之滚动、不停留，不会有 <strong>sticky</strong> 效果（粘性效果、悬停效果）。</p>
+</li>
+<li>
+<p>Group类型默认设置tableView灰色背景色，cell为白色背景色，section外边缘设置浅灰色边框，cell设置浅灰色间隔线</p>
+</li>
+<li>
+<p>例如：iOS中「设置」就是典型应用</p>
+<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343539.png" alt="image-20220817232639421" style="zoom:33%;" />
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>踩坑记录：</strong></p>
+<p>在iOS15中，如果使用UITableViewStylePlain样式建立TableView，如果给section添加一个header那么会出现一个现象，就是在这个header上方会出现一个空白区域。这个空白区域是由于在iOS15中UITableView中引入了一个新的属性sectionHeaderTopPadding，这个属性默认是22，如果不需要这块空白，改为0即可，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">tableView</span> <span class="p">=</span> <span class="n">UITableView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="cp">#available</span><span class="p">(</span><span class="cp">iOS</span> <span class="mf">15.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">tableView</span><span class="p">.</span><span class="n">sectionHeaderTopPadding</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Fallback on earlier versions</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="单元格cell">单元格Cell</h3>
+<p>UITableView的每行数据都是一个UITableViewCell：</p>
+<ol>
+<li>
+<p>每个<strong>Cell</strong>使用<strong>IndexPath</strong>来表示位置，换言之UITableView中的数据只有行的概念，没有列的概念</p>
+</li>
+<li>
+<p><strong>IndexPath又分为section和<strong><strong>row</strong></strong>，每个section为一组，其中可以包含多个行row。</strong></p>
+</li>
+</ol>
+<h4 id="关于cell的重用">关于Cell的重用</h4>
+<p>需要注意的是 TableView 必须使用重用机制 ，当cell滑出屏幕的时候 cell会被系统回收，在下面cell将要显示时会调用之前回收的cell，这样就不必每次都创建销毁，节省内存同时节省时间，如果不使用重用机制，每次都创建新的cell 是非常消耗内存和性能的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="c1">// 必须实作的方法：Cell重用，然后设定Cell的内容</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">cellForRowAt</span> <span class="n">indexPath</span><span class="p">:</span> <span class="n">IndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UITableViewCell</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 取得 tableView 目前使用的 cell</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nv">cell</span> <span class="p">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">dequeueReusableCell</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">withIdentifier</span><span class="p">:</span> <span class="s">&#34;Cell&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">:</span> <span class="n">indexPath</span><span class="p">)</span> <span class="k">as</span> <span class="n">UITableViewCell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 设置显示的内容</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="kd">let</span> <span class="nv">myLabel</span> <span class="p">=</span> <span class="n">cell</span><span class="p">.</span><span class="n">textLabel</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">myLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">cell</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="cell的ui和布局">Cell的UI和布局</h4>
+<p>UITableView中每行数据都是一个UITableViewCell，在这个控件中为了显示更多的信息，iOS已经在其内部设置好了多个子控件以供开发者使用。如果我们查看UITableViewCell的声明文件可以发现在内部有一个UIView控件（contentView，作为其他元素的父控件）两个UILable控件（textLabel、detailTextLabel）、一个UIImage控件（imageView），分别用于容器、显示内容、详情和图片。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343630.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343630.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343630.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343630.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343630.png"
+    title="image (1)" /></p>
+<p>如果直接使用UITableViewCell则默认共有四种Style设定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="n">typedef</span> <span class="n">NS_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">UITableViewCellStyle</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UITableViewCellStyleDefault</span><span class="p">,</span>   <span class="c1">// 左侧显示textLabel（不显示detailTextLabel），imageView可选（显示在最左边）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UITableViewCellStyleValue1</span><span class="p">,</span>    <span class="c1">// 左侧显示textLabel、右侧显示detailTextLabel（默认蓝色），imageView可选（显示在最左边）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UITableViewCellStyleValue2</span><span class="p">,</span>    <span class="c1">// 左侧依次显示textLabel(默认蓝色)和detailTextLabel，imageView可选（显示在最左边）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UITableViewCellStyleSubtitle</span>   <span class="c1">// 左上方显示textLabel，左下方显示detailTextLabel（默认灰色）,imageView可选（显示在最左边）</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343747.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343747.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343747.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343747.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343747.png"
+    title="1280X1280 (1)" /></p>
+<h4 id="cell的属性">Cell的属性</h4>
+<h5 id="accessoryview">accessoryView</h5>
+<p>在contentView的右边，还有一个accessoryView，这个View是用来作为功能键使用，在iOS中称为访问器，支持显示不同的图标，点击可以触发不同的事件</p>
+<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343133.jpeg" alt="e068ff1e-ac79-4749-a913-941fade99bba" style="zoom:33%;" />
+<p>这个View的设定是通过设置UITableViewCell中的accesoryType属性完成的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">AccessoryType</span> <span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="p">@</span><span class="n">unchecked</span> <span class="n">Sendable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="kr">none</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">// 不显示任何图标</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">disclosureIndicator</span> <span class="p">=</span> <span class="mi">1</span> <span class="c1">// 跳转指示图标</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">detailDisclosureButton</span> <span class="p">=</span> <span class="mi">2</span> <span class="c1">// 内容详情图标和跳转指示图标</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">checkmark</span> <span class="p">=</span> <span class="mi">3</span> <span class="c1">// 勾选图标</span>
+</span></span><span class="line"><span class="cl">    <span class="p">@</span><span class="n">available</span><span class="p">(</span><span class="n">iOS</span> <span class="mf">7.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="n">detailButton</span> <span class="p">=</span> <span class="mi">4</span> <span class="c1">// 内容详情图标 </span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认情况如图所示：</p>
+<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343219.png" alt="image (2)" style="zoom:50%;" />
+<h5 id="cell的分割线">Cell的分割线</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="c1">// 设置分割线端距，这里表示separator离左边和右边均80像素</span>
+</span></span><span class="line"><span class="cl"><span class="n">myTableView</span><span class="p">.</span><span class="n">separatorInset</span> <span class="p">=</span> <span class="n">UIEdgeInsets</span><span class="p">(</span><span class="n">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="kr">left</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="kr">right</span><span class="p">:</span> <span class="mi">40</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">myTableView</span><span class="p">.</span><span class="n">separatorStyle</span> <span class="p">=</span> <span class="p">.</span><span class="n">singleLine</span>    <span class="c1">// 分割线的样式</span>
+</span></span><span class="line"><span class="cl"><span class="n">myTableView</span><span class="p">.</span><span class="n">separatorColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">red</span>   <span class="c1">// 分割线颜色</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="隐藏部分cell的分割线">隐藏部分Cell的分割线</h5>
+<p>因为TableView的风格设置是针对整个tableView的，如果设置<code>myTableView.separatorStyle = .singleLine</code>，则所有的cell都会有分割线，如果要隐藏部分cell的话就需要一点点小trick</p>
+<p>在要显示cell的时候将cell的分割线inset左右各设为cell宽度的一半</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+</span></span><span class="line"><span class="cl">    if indexPath.section == 1 {
+</span></span><span class="line"><span class="cl">        cell.separatorInset = .init(top: 0, left: cell.bounds.width / 2, bottom: 0, right: cell.bounds.width / 2)
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="cell选中样式">Cell选中样式</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="c1">// cell的选中样式</span>
+</span></span><span class="line"><span class="cl"><span class="n">cell</span><span class="p">.</span><span class="n">selectionStyle</span> <span class="p">=</span> <span class="p">.</span><span class="k">default</span>  <span class="c1">// 默认点击时为灰色</span>
+</span></span><span class="line"><span class="cl"><span class="n">cell</span><span class="p">.</span><span class="n">selectionStyle</span> <span class="p">=</span> <span class="p">.</span><span class="kr">none</span>     <span class="c1">// 设置为none点击时无反应 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 这里要注意一下，其实还有.grey和.blue但效果和.default是相同的</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 在iOS7的时候更改了，然后如果想要设置为其他颜色，则要设置selectedBackgroundView</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// cell的选中样式为其他颜色</span>
+</span></span><span class="line"><span class="cl"><span class="n">cell</span><span class="p">.</span><span class="n">selectionStyle</span> <span class="p">=</span> <span class="p">.</span><span class="k">default</span>
+</span></span><span class="line"><span class="cl"><span class="n">cell</span><span class="p">.</span><span class="n">selectedBackgroundView</span> <span class="p">=</span> <span class="n">UIView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">cell</span><span class="p">.</span><span class="n">selectedBackgroundView</span><span class="p">?.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">blue</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="uitableview的使用">UITableView的使用：</h4>
+<ul>
+<li>
+<p>在controller中引入UITableView类型的变量，然后设置相应的数据源和代理：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="n">tableView</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="cl"><span class="n">tableView</span><span class="p">.</span><span class="n">datasource</span> <span class="p">=</span> <span class="kc">self</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>表格分组section的DataSource方法的调用时序：</p>
+</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343785.svg"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343785.svg, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343785.svg 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343785.svg 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343785.svg"
+    title="time" /></p>
+<h4 id="datasource数据源需要在controller引入uitableviewdatasource协议">DataSource数据源：需要在Controller引入UITableViewDataSource协议</h4>
+<ul>
+<li>
+<p>返回表格视图的Section数：numberOfSections</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">numberOfSections</span><span class="p">(</span><span class="k">in</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 返回section的数量</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>设置 section中的row行的个数：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 返回Section中的row行数</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>返回Section的头部View：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">viewForHeaderInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UIView</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 返回对应Section的头部</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">UIView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>返回Section的尾部View：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">viewForFooterInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UIView</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 返回对应Section的尾部</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">UIView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h4 id="uitableviewdelegate需要在controller引入uitableviewdelegate协议">UITableViewDelegate：需要在Controller引入UITableViewDelegate协议</h4>
+<ul>
+<li>
+<p>返回每个cell对应的行高：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">heightForRowAt</span> <span class="n">indexPath</span><span class="p">:</span> <span class="n">IndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">CGFloat</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">indexPath</span><span class="p">.</span><span class="n">section</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// section0 的cell行高为70</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">70</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">indexPath</span><span class="p">.</span><span class="n">section</span> <span class="p">==</span> <span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// section1 的cell行高为140</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">140</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 默认行高</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">106</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>返回Section头部的高度：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">heightForHeaderInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">CGFloat</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">section</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mf">0.01</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">isShowUrlCell</span> <span class="o">&amp;&amp;</span> <span class="n">section</span> <span class="p">==</span> <span class="mi">5</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="n">isShowUrlCell</span> <span class="o">&amp;&amp;</span> <span class="n">section</span> <span class="p">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mf">0.01</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>返回Section尾部的高度：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">heightForFooterInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">CGFloat</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mf">0.01</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>Cell的点击事件：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">didSelectRowAt</span> <span class="n">indexPath</span><span class="p">:</span> <span class="n">IndexPath</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">indexPath</span><span class="p">.</span><span class="n">section</span> <span class="p">==</span> <span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 针对section1操作</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">indexPath</span><span class="p">.</span><span class="n">section</span> <span class="p">==</span> <span class="mi">2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 针对Section2操作</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 默认操作</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h4 id="uitableview的一些常规函数功能使用">UITableView的一些常规函数/功能使用</h4>
+<ul>
+<li>
+<p>更新Cell，重新加载所有Cell</p>
+<ul>
+<li>此方法可重新加载用于构建表格的所有数据，包括单元格、节页眉和页脚、索引数组等。为了提高效率，表格视图只重新显示那些可见的行。如果表因重新加载而缩小，它会调整偏移量。表视图的代理或数据源在它希望表视图完全重新加载其数据时调用此方法。不应在插入或删除行的方法中调用它，尤其是在通过调用和实现的动画块中</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="n">tableView</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>Cell的左滑右滑</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Swift" data-lang="Swift"><span class="line"><span class="cl"><span class="c1">// 从左向右滑动</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">leadingSwipeActionsConfigurationForRowAt</span> <span class="n">indexPath</span><span class="p">:</span> <span class="n">IndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UISwipeActionsConfiguration</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="n">UISwipeActionsConfiguration</span><span class="p">(</span><span class="n">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIContextualAction</span><span class="p">(</span><span class="n">style</span><span class="p">:</span> <span class="p">.</span><span class="n">normal</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;点赞&#34;</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="kc">_</span><span class="p">,</span><span class="kc">_</span><span class="p">,</span><span class="kc">_</span> <span class="k">in</span> <span class="bp">print</span><span class="p">(</span><span class="s">&#34;like&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">config</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 从右向左滑动</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">,</span> <span class="n">trailingSwipeActionsConfigurationForRowAt</span> <span class="n">indexPath</span><span class="p">:</span> <span class="n">IndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">UISwipeActionsConfiguration</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">config</span> <span class="p">=</span> <span class="n">UISwipeActionsConfiguration</span><span class="p">(</span><span class="n">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIContextualAction</span><span class="p">(</span><span class="n">style</span><span class="p">:</span> <span class="p">.</span><span class="n">destructive</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;删除&#34;</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span><span class="kc">_</span><span class="p">,</span><span class="kc">_</span><span class="p">,</span><span class="kc">_</span> <span class="k">in</span> <span class="bp">print</span><span class="p">(</span><span class="s">&#34;delete&#34;</span><span class="p">)})])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">config</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h4 id="tableview的性能优化">TableView的性能优化</h4>
+<ol>
+<li><a
+  href="https://juejin.cn/post/6844903590524551176"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>UITableView 性能优化 - 掘金<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></li>
+<li><a
+  href="https://juejin.cn/post/6955731915672387592#heading-5"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>tableView性能优化 - 掘金<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></li>
+</ol></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-17&#32;23:43:05>更新于 2022-08-17</span>
+      </div>
+      <div class="post-info-license "></div>
+    </div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/ios/">iOS</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="prev" rel="prev" title="iOS-UIStackView使用指南"><i class="fa-solid fa-angle-left fa-fw"></i>iOS-UIStackView使用指南</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="https://github.com/Sugar-27"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div></div>
+  </footer></div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+      <i class="fa-solid fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+      <i class="fa-solid fa-comment fa-fw"></i>
+    </a>
+  </div><div id="mask"></div>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+</html>
