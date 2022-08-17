@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>iOS-UIStackView使用指南 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="" />
+<meta name="keywords" content="iOS" /><meta itemprop="name" content="iOS-UIStackView使用指南">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-08-17T23:10:32+08:00" />
+<meta itemprop="dateModified" content="2022-08-17T23:10:32+08:00" />
+<meta itemprop="wordCount" content="3645"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="iOS," /><meta property="og:title" content="iOS-UIStackView使用指南" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><meta property="og:image" content="http://sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-17T23:10:32+08:00" />
+<meta property="article:modified_time" content="2022-08-17T23:10:32+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="iOS-UIStackView使用指南"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="欢迎来到Sugar的博客小站">
+<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="prev" href="http://sugar-27.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "iOS-UIStackView使用指南",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/sugar-27.github.io\/posts\/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/"
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "iOS","wordcount":  3645 ,
+    "url": "http:\/\/sugar-27.github.io\/posts\/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/","datePublished": "2022-08-17T23:10:32+08:00","dateModified": "2022-08-17T23:10:32+08:00","publisher": {
+      "@type": "Organization",
+      "name": "Sugar"},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": ""
+  }
+  </script></head>
+  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="欢迎来到Sugar的博客小站"
+    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header>
+<div class="search-dropdown desktop">
+  <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+  <div id="search-dropdown-mobile"></div>
+</div>
+<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+  </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">iOS-UIStackView使用指南</h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://github.com/Sugar-27"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer author"
+  
+  
+    class="author"
+  
+  
+><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
+    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
+    data-sizes="auto"
+    alt="Sugar"
+    title="Sugar" />&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/ios/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;iOS</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-17&#32;23:10:32>
+            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-17" >2022-08-17</time>
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 3645 字&nbsp;
+        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+    </div><div class="details toc" id="toc-static" kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#内容自适应规则">内容自适应规则</a>
+      <ul>
+        <li><a href="#nslayoutconstraintaxis">NSLayoutConstraint.Axis</a></li>
+        <li><a href="#uistackviewdistribution">UIStackView.Distribution</a></li>
+        <li><a href="#uistackviewalignment">UIStackView.Alignment</a></li>
+        <li><a href="#spacing间距">Spacing间距</a></li>
+      </ul>
+    </li>
+    <li><a href="#子视图管理">子视图管理</a>
+      <ul>
+        <li><a href="#布局管理">布局管理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="uistackview使用指南">UIStackView使用指南</h1>
+<h2 id="概述">概述</h2>
+<p>一般遇到两个或以上的控件进行一行或一列布局时，或行列组合成卡片形式的布局时，使用 <code>UIStackView</code> 是最简单有效的方案，例如一些 tab 的展示时，可简单使用 <code>UIStackView + UIScrollView</code> 实现。当然要排列的控件比较多，且需要分页加载的时候，请考虑使用 <code>UICollectionView</code>。</p>
+<p>所以这里的 Stack 不是堆栈的意思，也不存在压栈、弹栈的操作，可以理解为“堆叠”。UIStackView实现了U界面×轴和丫轴方向上的堆叠。类比理解，Swiftul 带来的 ZStack 就是Z轴方向上的视图堆叠。</p>
+<p>一图概之：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png"
+    title="image-20220730025520477" /></p>
+<p>基本要点：</p>
+<ul>
+<li>基于 Auto Layout 布局子视图。UIStackView 自身也需要使用 Auto Layout 布局，使用 frame 布局可能效果不一定符合预期。</li>
+<li>开发者负责定义 UIStackView 的位置和尺寸（可选），UIStackView 自身管理子视图的内容布局和自身大小，即至少给 UIStackView 添加两个邻边的位置约束。</li>
+<li>可动态修改所有属性。</li>
+<li>阄割了 UView 基类的一些特性，如设置 <code>backgroundColor</code></li>
+</ul>
+<p>UIStackView 是 Apple 基于 Flexbox 思想来实现的布局，虽然是以一个控件 （UlView 子类）呈现，但它做的更多是布局其加入子视图。这种布局思想更接近物理世界的直觉。</p>
+<p>Flexbox 在2009 年被W3C 提出，可以很简单、完整地实现各种页面布局，而且还是响应式的，开始被应用于前端领域，目前所有浏览器都已支持。后来通过 React Native 和 Weex等框架，它被带入到客户端开发中，同时支持了 i0s 和 Android。想了解 Flexbax 的详细 CSS布局，可参阅 <a
+  href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Flex 布局教程：语法篇-阮一峰的网络日志<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>。</p>
+<p>要想更直观地体验把玩 Flexbox 布局，可参阅以下链接：</p>
+<ul>
+<li>
+<p><a
+  href="https://flexbox.help/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>display: flex<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></p>
+</li>
+<li>
+<p><a
+  href="https://flexboxfroggy.com/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Flexbox Froggy - A game for learning CSS flexbox<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></p>
+</li>
+<li>
+<p><a
+  href="https://the-echoplex.net/flexyboxes/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Flexy Boxes — CSS flexbox playground and code generation tool<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></p>
+</li>
+</ul>
+<p>要想在iOS完整体验 Flexbox 布局，可使用 Texture 中的 ASStackLayoutSpec。一些聪明的开发者通过UICollectionViewLayout也实现了简单的 Flexbox 布局，如 UICollectionViewFlexboxLayouto SwiftUl也引入了些 Flexbox 布局，如 HStack、 vStack 和 ZStack，可参阅 Building layouts with UIStackViews 简单体验其为布局带来的便利</p>
+<h2 id="内容自适应规则">内容自适应规则</h2>
+<p>一句话概括：<code>subview content size</code> + <code>spacing</code>。</p>
+<ul>
+<li>
+<p>UIStackView 沿轴方向长度 = 所有排列子视图大小之和 + 子视图之间的间距总和</p>
+</li>
+<li>
+<p>UIStackView 正交轴方向（垂直于轴方向）长度 = 最大排列子视图的长度</p>
+</li>
+<li>
+<p>若 <code>isLayoutwarginsReLativeArrangement</code> 为 true，上述的长度还会包含相关的 <code>layoutMargins</code></p>
+</li>
+</ul>
+<p>上面所说的长度都是拟合大小 （fitting size)</p>
+<blockquote>
+<p>注意:</p>
+<p>这里的子视图大小是视图的 content size，内容大小，是指 Auto Layout 约束计算之后的 size，所以直接设置 frame是无效的，必须通过重写 intrinsieContentsize 属性或给子视图的宽高添加 Auto Layout 约束</p>
+</blockquote>
+<p>这里还隐含了一些潜规则：</p>
+<ul>
+<li>
+<p>让 UIStackView 能自适应子视图大小的前提是子视图要有 content size。</p>
+</li>
+<li>
+<p><strong>最终子视图的 size 也不一定等于 content size，当 UIStackView 自身设置了宽高约束，其会为了填充空间会对子视图进行拉伸或收缩</strong>。</p>
+</li>
+<li>
+<p>自适应子视图大小意味着其不允许子视图溢出其自身。这与 CSS flexbox 的 <code>flex-wrap</code> 表现有别。</p>
+</li>
+</ul>
+<p>另外 UIStackView 的这些布局属性会直接影响其自适应的大小：</p>
+<ul>
+<li><code>axis</code>：定义了<strong>堆叠的轴方向</strong>，是在垂直方向还是水平方向进行堆叠。</li>
+<li><code>distribution</code>：定义了<strong>轴方向</strong>上的子视图布局。</li>
+<li><code>alignment</code>：定义了<strong>轴正交方向</strong>上的子视图布局。</li>
+<li><code>spacing</code>：定义了<strong>轴方向上</strong>的子视图之间的<strong>最小间距</strong>。</li>
+<li><code>isBaselineRelativeArrangement</code>：定义了视图之间的垂直间距是否从<strong>基线</strong>测量</li>
+<li><code>isLayoutMarginsRelativeArrangement</code>：定义了是否要基于子视图的 <code>LayoutMargins</code> 来布局</li>
+</ul>
+<p>若修改上述属性无法达到你的预期效果，则优先检查 Xcode 控制台是否输出了 Auto Layout 约束冲突的错误日志，从中检查需要修改的属性或补充的约束。</p>
+<h3 id="nslayoutconstraintaxis">NSLayoutConstraint.Axis</h3>
+<p>默认为<code>horizontal</code>水平方向</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png"
+    title="image-20220730030808345" /></p>
+<h3 id="uistackviewdistribution">UIStackView.Distribution</h3>
+<p>定义沿 UIStackView 轴方向的子视图的大小和位置的布局。</p>
+<p>除了 <code>fillEqually</code> 以外的 <code>distribution</code>，UStackView 在沿轴方向计算尺寸时，会使用每个子视图的 <code>intrinsicContentsize</code> 属性。而 <code>fiLLEqually</code> 会相等调整子视图的大小，使其在轴方向的长度是一致的，如果可能，UIStackView 会拉伸所有子视图，以匹配轴方向最大内容大小的视图。</p>
+<ol>
+<li>
+<p><code>fill</code>
+默认情况，UIStackView 调整其子视图的大小,以填充轴方向上的可用空间</p>
+<p>当子视图塞不进 UIStackView 时,UIStackView 根据其抗压优先级 (compression resistance priority) 收缩视图</p>
+<p>当子视图没有塞满UIStackView时，UIStackView根据其拥抱优先级(hugging priority)拉伸时图</p>
+<p>当存在歧义时,UIStackView 根据子视图在 <code>arrangedSubviews</code> 中的索引调整子视图的大小<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png"
+    title="image-20220730031415745" /></p>
+</li>
+<li>
+<p><code>fillEqually</code></p>
+<p>UIStackView 调整其子视图的大小，以填充轴方向上的可用空间。子视图会拉伸调整大小（匹配最大的子视图），以保持轴方向上的大小都相等。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png"
+    title="image-20220730031547748" /></p>
+</li>
+<li>
+<p><code>fillPropertionlly</code></p>
+<p>UIStackView 调整其子视图的大小，以填充轴方向上的可用空间。视图根据其沿 UIStackView 轴的内在内容大小按比例调整大小。<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png"
+    title="image-20220730031632289" /></p>
+</li>
+<li>
+<p><code>equalSpacing</code></p>
+<p>UIStackView 放置排列子视图，以填充轴方向上的可用空间。</p>
+<p>当排列的视图没有填充 UIStackView 时：UIstackview 会均匀地填充视图之间行间距。即<strong>此时的 spaicing 只限定了最小的间距</strong>。</p>
+<p>当子视图塞不进 UIStackView 时，UIStackView 会根据其抗压优先级收缩视图。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png"
+    title="image-20220730031757632" /></p>
+</li>
+<li>
+<p><code>equalCentering</code></p>
+<p>对⼦视图中点等距布局，同时保持⼦视图之间的间距。同样，此时的 spaicing 只限定了最⼩的间距。</p>
+<p>当⼦视图塞不进 UIStackView 时，UIStackView 收缩间距，直到达到 spaicing 值。若⼦视图仍塞不进UIStackView，则会根据其抗压优先级收缩子视图</p>
+<p>当存在歧义时，UIStackView 会根据其在 <code>arrangedsubviews</code> 中的索引收缩子视图</p>
+<p>为了保持⼦视图内容⼤⼩，UIStackView 会突破中点等距布局。同样，为保持⼦视图间的最⼩间距， UIStackView 会压缩⼦视图的内容⼤⼩。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png"
+    title="image-20220730032133824" /></p>
+</li>
+</ol>
+<h3 id="uistackviewalignment">UIStackView.Alignment</h3>
+<p>定义垂直于 UIStackView 轴方向的子视图布局。</p>
+<p>对于除 <code>fill</code> 之外的所有 <code>alignment</code>，<code>UIStackView</code> 在计算轴正交方向的大小时使用每个子视图的 <code>intrinsiccontentsize</code> 属性。<code>fill</code> 则调整所有子视图的大小，以填充轴正交方向上的可用空间，如果可能，<code>UIStackView</code> 会拉伸所有子视图，以匹配轴正交方向上最大内在大小的视图。</p>
+<ol>
+<li>
+<p><code>fill</code>
+默认。UIStackView 调整其子视图大小，以填充轴正交方向上的可用空间。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png"
+    title="image-20220730032505689" /></p>
+</li>
+<li>
+<p><code>center</code></p>
+<p>UIStackView 把⼦视图中点沿轴对⻬，即垂直方向居中对⻬。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png"
+    title="image-20220730032549929" /></p>
+</li>
+<li>
+<p><code>leading</code>：横轴时也可以用<code>top</code></p>
+<p>UIStackView把子视图沿着前边缘对齐</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png"
+    title="image-20220730032752776" /></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png"
+    title="image-20220730032733483" /></p>
+</li>
+<li>
+<p><code>trailing</code>：横轴时也可以用<code>bottom</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png"
+    title="image-20220730032901326" />
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png"
+    title="image-20220730032939057" /></p>
+</li>
+<li>
+<p><code>fisrtBaseline</code></p>
+<p>仅横轴有效，UIStackView根据首个基线对齐排列子视图</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png"
+    title="image-20220730033031455" /></p>
+</li>
+<li>
+<p><code>lastBaseline</code></p>
+<p>仅纵轴有效，UIStackView根据末尾基线对齐排列子视图</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png"
+    title="image-20220730033132150" /></p>
+</li>
+</ol>
+<h3 id="spacing间距">Spacing间距</h3>
+<ol>
+<li>
+<p>固定间距</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">spacing</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">{</span> <span class="kr">get</span> <span class="kr">set</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认为<code>0.0</code>，此属性定义了在<code>UIStackViewDistribution.fill</code>子视图之间的严格间距，也是<code>UIStackView.Distribution.equalSpacing</code> 和 <code>UIStackView.Distribution.equalCentering</code> 的最小间距</p>
+<p>使用负值会重叠子视图，其堆叠层级按子视图的层级索引排列</p>
+<p>更进一步，iOS 11.0+ 还增加了设置自定义间距的方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Applies custom spacing after the specified view.</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">setCustomSpacing</span><span class="p">(</span><span class="kc">_</span> <span class="n">spacing</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="n">after</span> <span class="n">arrangedSubview</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">customSpacing</span><span class="p">(</span><span class="n">after</span> <span class="n">arrangedSubview</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">CGFloat</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过这个方法可以设置子视图<em><strong>之间</strong></em>的间距，如下图所示，只可以设置两个subView之间的间距，而不可以设置一个subView到supperView的边缘的距离</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png"
+    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png 2x"
+    data-sizes="auto"
+    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png"
+    title="image-20220731191344940" /></p>
+<p>这个时候可以通过给边缘位置添加一个占位视图的方式来进行相关设置，这里简单封装一个占位视图：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">import</span> <span class="nc">UIKit</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">/// 自定义内容尺寸视图</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SizeView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">size</span><span class="p">:</span> <span class="n">CGSize</span> <span class="p">=</span> <span class="p">.</span><span class="n">zero</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">coder</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">commonInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">commonInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">commonInit</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">isUserInteractionEnabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kr">override</span> <span class="kd">var</span> <span class="nv">intrinsicContentSize</span><span class="p">:</span> <span class="n">CGSize</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">extension</span> <span class="nc">SizeView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="n">CGSize</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">UIColor</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="p">.</span><span class="n">zero</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">size</span> <span class="p">=</span> <span class="n">size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">backgroundColor</span> <span class="p">=</span> <span class="n">color</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">/// 尽可能大</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">expanded</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">=</span> <span class="p">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">=</span> <span class="p">.</span><span class="n">greatestFiniteMagnitude</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">UIColor</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SizeView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SizeView</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="n">CGSize</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="p">:</span> <span class="n">color</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">/// 尽可能小</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">shrinked</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">UIColor</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SizeView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SizeView</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="n">CGSize</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="p">:</span> <span class="n">color</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>音乐入口代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">noMusicStackView</span><span class="p">.</span><span class="n">then</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">musicIconView</span> <span class="p">=</span> <span class="n">makeMusicIconView</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用占位视图添加左侧间距</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$0</span><span class="p">.</span><span class="n">addArrangedSubview</span><span class="p">(</span><span class="n">SizeView</span><span class="p">.</span><span class="n">shrinked</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mi">12</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$0</span><span class="p">.</span><span class="n">addArrangedSubview</span><span class="p">(</span><span class="n">musicIconView</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用自定义间距 API 设置 sub view 间的间距</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$0</span><span class="p">.</span><span class="n">setCustomSpacing</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">after</span><span class="p">:</span> <span class="n">musicIconView</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">addLabel</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">addLabel</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addLabel</span><span class="p">.</span><span class="n">font</span> <span class="p">=</span> <span class="n">UI</span><span class="p">.</span><span class="n">textFont</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addLabel</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="n">UI</span><span class="p">.</span><span class="n">textColor</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addLabel</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">lv</span><span class="p">.</span><span class="n">setupShadow</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="n">UI</span><span class="p">.</span><span class="n">textShadow</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">UI</span><span class="p">.</span><span class="n">textShadow</span><span class="p">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="n">UI</span><span class="p">.</span><span class="n">textShadow</span><span class="p">.</span><span class="n">radius</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$0</span><span class="p">.</span><span class="n">addArrangedSubview</span><span class="p">(</span><span class="n">addLabel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用占位视图添加右侧间距</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$0</span><span class="p">.</span><span class="n">addArrangedSubview</span><span class="p">(</span><span class="n">SizeView</span><span class="p">.</span><span class="n">shrinked</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mi">12</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果：</p>
+<figure class="third">
+    <img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311951482.png" height = 95>
+    <img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311952419.png" height = 95 >
+  	<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207312005192.png" height = 95>
+</figure>
+</li>
+</ol>
+<h2 id="子视图管理">子视图管理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">addArrangedSubview</span><span class="p">(</span><span class="kc">_</span> <span class="n">view</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">arrangedSubviews</span><span class="p">:</span> <span class="p">[</span><span class="n">UIView</span><span class="p">]</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">insertArrangedSubview</span><span class="p">(</span><span class="kc">_</span> <span class="n">view</span><span class="p">:</span> <span class="n">UIView</span><span class="p">,</span> <span class="n">at</span> <span class="n">stackIndex</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">removeArrangedSubview</span><span class="p">(</span><span class="kc">_</span> <span class="n">view</span><span class="p">:</span> <span class="n">UIView</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>
+<p>上述所有方法都会作用于<code>arrangedSubviews</code>数组，调用UIStackView的<code>addArrangedSubview(_:)</code>时，添加的视图除了添加到 <code>arrangedSubviews</code> 中，同时也会添加到基类的 <code>subviews</code> 中，即成为子视图。</p>
+</li>
+<li>
+<p>由于 UIStackView 内部会确保 <code>arrangedSubviews</code> 是 <code>subviews</code> 的子集，所以即使在调用 <code>addArrangedSubview(_:)</code> 前调用了基类的 <code>addSubview(_:)</code>，也不会有什么影响，也不会改变其在 <code>arrangedSubviews</code> 中的顺序。但<strong>必须要调用 <code>addArrangedSubview(_:)</code> 来添加管理的子视图</strong>，否则设置 UIStackView 的各个属性将无法作用于添加的子视图。</p>
+</li>
+<li>
+<p>移除视图的时候要注意，<code>removeArrangedSubview(_:)</code> 只是从 <code>arrangedSubviews</code> 中移除子视图，即移除的子视图不受 UIStackView 管理，但其还在基类的 <code>subviews</code> 中，即还在视图层级中。所以要直接从层级中移除子视图，可直接使用基类的 <code>removeFromSuperview()</code> 方法。</p>
+</li>
+</ol>
+<h3 id="布局管理">布局管理</h3>
+<p>UIStackView 会动态响应以下操作，并自动更新布局：</p>
+<ol>
+<li>添加、删除或插入到 <code>arrangedSubviews</code>。</li>
+<li>修改 UIStackView 定义的<strong>所有属性</strong>。</li>
+<li>修改子视图的 <code>isHidden</code> 属性。其效果跟 UIView 对子视图的效果不一致，<strong>当值为 <code>true</code> 时 UIStackView 会重新计算布局（跟移除视图效果一致），还甚至默认添加了动画（轴方向收缩效果）</strong>，<strong>而 UIView 对子视图 <code>isHidden</code> 为 <code>true</code> 时不会有布局更新，更不会有动画。</strong></li>
+</ol>
+<p>处理第 1 点管理 <code>arrangedSubviews</code> 的几个方法，第 2、3 点涉及的属性都可以添加动画。另外要控制子视图 <code>isHidden</code> 的时长，可以放到 <code>animate(withDuration:animations:)</code> 中控制。</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-17&#32;23:10:32>更新于 2022-08-17</span>
+      </div>
+      <div class="post-info-license "></div>
+    </div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/ios/">iOS</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="字符串算法"><i class="fa-solid fa-angle-left fa-fw"></i>字符串算法</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="https://github.com/Sugar-27"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div></div>
+  </footer></div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+      <i class="fa-solid fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+      <i class="fa-solid fa-comment fa-fw"></i>
+    </a>
+  </div><div id="mask"></div>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+</html>
