@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Linux中的共享内存 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="" />
+<meta name="keywords" content="Linux" /><meta itemprop="name" content="Linux中的共享内存">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-09-03T02:22:01+08:00" />
+<meta itemprop="dateModified" content="2022-09-03T02:22:01+08:00" />
+<meta itemprop="wordCount" content="1590"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="Linux," /><meta property="og:title" content="Linux中的共享内存" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" /><meta property="og:image" content="http://sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-03T02:22:01+08:00" />
+<meta property="article:modified_time" content="2022-09-03T02:22:01+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Linux中的共享内存"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="欢迎来到Sugar的博客小站">
+<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" /><link rel="prev" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux中的共享内存",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/sugar-27.github.io\/posts\/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98\/"
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "Linux","wordcount":  1590 ,
+    "url": "http:\/\/sugar-27.github.io\/posts\/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98\/","datePublished": "2022-09-03T02:22:01+08:00","dateModified": "2022-09-03T02:22:01+08:00","publisher": {
+      "@type": "Organization",
+      "name": "Sugar"},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": ""
+  }
+  </script></head>
+  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="欢迎来到Sugar的博客小站"
+    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header>
+<div class="search-dropdown desktop">
+  <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+  <div id="search-dropdown-mobile"></div>
+</div>
+<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+  </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">Linux中的共享内存</h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://github.com/Sugar-27"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer author"
+  
+  
+    class="author"
+  
+  
+><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
+    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
+    data-sizes="auto"
+    alt="Sugar"
+    title="Sugar" />&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;Linux</a></span></div>
+      <div class="post-meta-line"><span title=2022-09-03&#32;02:22:01>
+            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-03" >2022-09-03</time>
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 1590 字&nbsp;
+        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+    </div><div class="details toc" id="toc-static" kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#共享内存是啥">共享内存是啥</a></li>
+    <li><a href="#相关函数">相关函数</a>
+      <ul>
+        <li><a href="#头文件">头文件</a></li>
+        <li><a href="#创建或者获取共享内存shmget函数">创建或者获取共享内存——shmget函数</a></li>
+        <li><a href="#连接共享内存shmat函数">连接共享内存——shmat函数</a></li>
+        <li><a href="#分离共享内存shmdt函数">分离共享内存——shmdt函数</a></li>
+        <li><a href="#删除共享内存shmctl函数">删除共享内存——shmctl函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他命令操作">其他命令操作</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="linux中的共享内存">Linux中的共享内存</h1>
+<p>先简单写写这里，后面有时间慢慢深挖</p>
+<h2 id="共享内存是啥">共享内存是啥</h2>
+<p>这里摘抄一下维基百科：</p>
+<blockquote>
+<p><strong>共享内存</strong>（shared memory）指在<a
+  href="https://zh.wikipedia.org/w/index.php?title=%e5%a4%9a%e5%a4%84%e7%90%86&amp;action=edit&amp;redlink=1"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>多处理器<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>的<a
+  href="https://zh.wikipedia.org/wiki/%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%b3%bb%e7%bb%9f"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>计算机系统<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>中，可以被不同<a
+  href="https://zh.wikipedia.org/wiki/%e4%b8%ad%e5%a4%ae%e5%a4%84%e7%90%86%e5%99%a8"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>中央处理器<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>访问的大容量<a
+  href="https://zh.wikipedia.org/wiki/%e9%9a%a8%e6%a9%9f%e5%ad%98%e5%8f%96%e8%a8%98%e6%86%b6%e9%ab%94"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>内存<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>。由于多个CPU需要快速访问<a
+  href="https://zh.wikipedia.org/wiki/%e5%ad%98%e5%82%a8%e5%99%a8"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>存储器<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>，这样就要对存储器进行<a
+  href="https://zh.wikipedia.org/wiki/%e7%bc%93%e5%ad%98"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>缓存<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>。由于其他处理器可能也要存取，任一缓存数据更新后，共享内存就需要立即更新，否则不同处理器可能用到不同的数据（参见<a
+  href="https://zh.wikipedia.org/w/index.php?title=%e7%bc%93%e5%ad%98%e4%b8%80%e8%87%b4&amp;action=edit&amp;redlink=1"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>缓存一致<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>和<a
+  href="https://zh.wikipedia.org/wiki/%e5%86%85%e5%ad%98%e4%b8%80%e8%87%b4%e6%80%a7%e6%a8%a1%e5%9e%8b"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>内存一致<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>）。</p>
+</blockquote>
+<p>简单来说，<strong>共享内存（Shared Memory）<strong>就是允许多个进程访问</strong>同一个内存空间</strong>，是在多个进程之间共享和传递数据最高效的方式。</p>
+<p>操作系统将不同进程之间共享内存安排为同一段物理内存，进程可以将共享内存连接到它们自己的地址空间中，如果某个进程修改了共享内存中的数据，其它的进程读到的数据也将会改变。</p>
+<p>比较重要的一点：共享内存并未提供锁机制，也就是说，在某一个进程对共享内存的进行读写的时候，不会阻止其它的进程对它的读写（如果要对共享内存的读/写加锁，可以使用信号量）。</p>
+<h2 id="相关函数">相关函数</h2>
+<h3 id="头文件">头文件</h3>
+<p>在Linux中对于共享内存的操作首先要包含头文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/ipc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/shm.h&gt;</span><span class="cp">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建或者获取共享内存shmget函数">创建或者获取共享内存——shmget函数</h3>
+<ul>
+<li>
+<p>作用：创建一段共享内存或者读取已经存在的共享内存</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">shmget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shmflg</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li><code>key</code>：共享内存的键值，是一个整数，<code>typedef unsigned int key_t</code>，是共享内存在系统中的编号，不同共享内存的编号不能相同，<strong>这一点由程序员保证</strong>，个人经验之谈，<code>key</code>用十六进制表示比较好，因为一般在终端中查看时显示的也是十六进制，用十六进制设置比较直观也方便管理。</li>
+<li><code>size</code>：待创建的共享内存的大小，以字节为单位</li>
+<li><code>shmflg</code>：共享内存的访问权限，与文件的权限一样，<code>0666|IPC_CREAT</code>表示全部用户对它可读写，如果共享内存不存在，就创建一个共享内存</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：将返回有效的共享内存标识符</li>
+<li>失败或错误时，返回-1，并设置errno以指示错误。</li>
+</ul>
+</li>
+</ul>
+<h3 id="连接共享内存shmat函数">连接共享内存——shmat函数</h3>
+<ul>
+<li>
+<p>作用：把共享内存连接到当前进程的地址空间</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">shmat</span><span class="p">(</span><span class="kt">int</span> <span class="n">shm_id</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">shm_addr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shmflg</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li><code>shm_id</code>是由<code>shmget</code>函数返回的共享内存标识</li>
+<li>参数<code>shm_addr</code>指定共享内存连接到当前进程中的地址位置，通常为空，表示让系统来选择共享内存的地址</li>
+<li>参数<code>shm_flg</code>是一组标志位，通常为0。</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回一个指向共享内存第一个字节的指针</li>
+<li>失败：返回(void*) -1，并设置errno以指示错误的原因</li>
+</ul>
+</li>
+</ul>
+<h3 id="分离共享内存shmdt函数">分离共享内存——shmdt函数</h3>
+<ul>
+<li>
+<p>作用：将共享内存从当前进程中分离，相当于shmat函数的反操作</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">shmdt</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li><code>shmaddr</code>：是shmat函数返回的地址</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>
+<p>成功：返回0</p>
+</li>
+<li>
+<p>失败：返回-1，并设置errno以指示错误的原因</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除共享内存shmctl函数">删除共享内存——shmctl函数</h3>
+<ul>
+<li>
+<p>作用：控制共享内存，这里注意一下，<strong><code>shmctl</code>不仅可以删除共享内存，还可以做其他事情</strong>，但删除是这个函数最主要也是最常用的功能</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">shmctl</span><span class="p">(</span><span class="kt">int</span> <span class="n">shm_id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">command</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">shmid_ds</span> <span class="o">*</span><span class="n">buf</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数(删除)：</p>
+<ul>
+<li><code>shm_id</code>是<code>shmget</code>函数返回的共享内存标识符</li>
+<li><code>command</code>填<code>IPC_RMID</code></li>
+<li><code>buf</code>填0</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>删除成功返回0（其他有部分操作不是，详情看man手册）</li>
+<li>失败返回-1，并会设置对应errno</li>
+</ul>
+</li>
+<li>
+<p>另外：<strong>用root创建的共享内存，不管创建的权限是什么，普通用户无法删除</strong></p>
+</li>
+</ul>
+<h2 id="其他命令操作">其他命令操作</h2>
+<ul>
+<li>
+<p>用<code>ipcs -m</code>可以查看系统的共享内存，内容有键值（key），共享内存编号（shmid），创建者（owner），权限（perms），大小（bytes）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  c git:<span class="o">(</span>main<span class="o">)</span> ✗ ipcs -m
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">------------ 共享内存段 --------------
+</span></span><span class="line"><span class="cl">键        shmid      拥有者  权限     字节     连接数  状态      
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">4</span>          sugar      <span class="m">600</span>        <span class="m">524288</span>     <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">7</span>          sugar      <span class="m">600</span>        <span class="m">524288</span>     <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">11</span>         sugar      <span class="m">600</span>        <span class="m">4194304</span>    <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">12</span>         sugar      <span class="m">600</span>        <span class="m">524288</span>     <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00005005 <span class="m">13</span>         sugar      <span class="m">640</span>        <span class="m">56</span>         <span class="m">0</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>用<code>ipcrm -m</code>共享内存编号，可以手工删除共享内存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  c git:<span class="o">(</span>main<span class="o">)</span> ✗ ipcrm -m <span class="m">13</span>
+</span></span><span class="line"><span class="cl">➜  c git:<span class="o">(</span>main<span class="o">)</span> ✗ ipcs -m    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">------------ 共享内存段 --------------
+</span></span><span class="line"><span class="cl">键        shmid      拥有者  权限     字节     连接数  状态      
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">4</span>          sugar      <span class="m">600</span>        <span class="m">524288</span>     <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">7</span>          sugar      <span class="m">600</span>        <span class="m">524288</span>     <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">11</span>         sugar      <span class="m">600</span>        <span class="m">4194304</span>    <span class="m">2</span>          目标       
+</span></span><span class="line"><span class="cl">0x00000000 <span class="m">12</span>         sugar      <span class="m">600</span>        <span class="m">524288</span>     <span class="m">2</span>          目标 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-09-03&#32;02:22:01>更新于 2022-09-03</span>
+      </div>
+      <div class="post-info-license "></div>
+    </div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" class="prev" rel="prev" title="Linux中的信号"><i class="fa-solid fa-angle-left fa-fw"></i>Linux中的信号</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="https://github.com/Sugar-27"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div></div>
+  </footer></div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+      <i class="fa-solid fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+      <i class="fa-solid fa-comment fa-fw"></i>
+    </a>
+  </div><div id="mask"></div>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+</html>
