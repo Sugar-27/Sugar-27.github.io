@@ -12,7 +12,7 @@
 <meta name="keywords" content="iOS" /><meta itemprop="name" content="iOS-UITableView使用指南">
 <meta itemprop="description" content="UITableView使用指南，速查手册，快速上手"><meta itemprop="datePublished" content="2022-08-17T23:43:05+08:00" />
 <meta itemprop="dateModified" content="2022-08-17T23:43:05+08:00" />
-<meta itemprop="wordCount" content="3328"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="wordCount" content="3413"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
 <meta itemprop="keywords" content="iOS," /><meta property="og:title" content="iOS-UITableView使用指南" />
 <meta property="og:description" content="UITableView使用指南，速查手册，快速上手" />
 <meta property="og:type" content="article" />
@@ -37,7 +37,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/sugar-27.github.io\/posts\/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/"
-    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "iOS","wordcount":  3328 ,
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "iOS","wordcount":  3413 ,
     "url": "http:\/\/sugar-27.github.io\/posts\/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/","datePublished": "2022-08-17T23:43:05+08:00","dateModified": "2022-08-17T23:43:05+08:00","publisher": {
       "@type": "Organization",
       "name": "Sugar"},"author": {
@@ -205,7 +205,7 @@
           <span class="post-category">收录于 <a href="/categories/ios/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;iOS</a></span></div>
       <div class="post-meta-line"><span title=2022-08-17&#32;23:43:05>
             <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-17" >2022-08-17</time>
-          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 3328 字&nbsp;
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 3413 字&nbsp;
         <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
     </div><div class="details toc" id="toc-static" kept="false">
         <div class="details-summary toc-title">
@@ -285,7 +285,7 @@
 </li>
 <li>
 <p>例如：iOS中「设置」就是典型应用</p>
-<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343539.png" alt="image-20220817232639421" style="zoom:33%;" />
+<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343539.png" alt="image-20220817232639421" style="zoom:20%;" />
 </li>
 </ul>
 </li>
@@ -400,7 +400,7 @@
 <h4 id="cell的属性">Cell的属性</h4>
 <h5 id="accessoryview">accessoryView</h5>
 <p>在contentView的右边，还有一个accessoryView，这个View是用来作为功能键使用，在iOS中称为访问器，支持显示不同的图标，点击可以触发不同的事件</p>
-<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343133.jpeg" alt="e068ff1e-ac79-4749-a913-941fade99bba" style="zoom:33%;" />
+<img src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172343133.jpeg" alt="e068ff1e-ac79-4749-a913-941fade99bba" style="zoom:20%;" />
 <p>这个View的设定是通过设置UITableViewCell中的accesoryType属性完成的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -489,8 +489,6 @@
 <ul>
 <li>
 <p>在controller中引入UITableView类型的变量，然后设置相应的数据源和代理：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -502,8 +500,6 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>表格分组section的DataSource方法的调用时序：</p>
 </li>
@@ -520,8 +516,6 @@
 <ul>
 <li>
 <p>返回表格视图的Section数：numberOfSections</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -537,12 +531,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>设置 section中的row行的个数：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -558,12 +548,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>返回Section的头部View：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -579,12 +565,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>返回Section的尾部View：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -601,14 +583,10 @@
 </div>
 </div></li>
 </ul>
-</li>
-</ul>
 <h4 id="uitableviewdelegate需要在controller引入uitableviewdelegate协议">UITableViewDelegate：需要在Controller引入UITableViewDelegate协议</h4>
 <ul>
 <li>
 <p>返回每个cell对应的行高：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -638,12 +616,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>返回Section头部的高度：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -669,12 +643,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>返回Section尾部的高度：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -688,12 +658,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>Cell的点击事件：</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -720,15 +686,13 @@
 </div>
 </div></li>
 </ul>
-</li>
-</ul>
 <h4 id="uitableview的一些常规函数功能使用">UITableView的一些常规函数/功能使用</h4>
 <ul>
 <li>
 <p>更新Cell，重新加载所有Cell</p>
 <ul>
-<li>此方法可重新加载用于构建表格的所有数据，包括单元格、节页眉和页脚、索引数组等。为了提高效率，表格视图只重新显示那些可见的行。如果表因重新加载而缩小，它会调整偏移量。表视图的代理或数据源在它希望表视图完全重新加载其数据时调用此方法。不应在插入或删除行的方法中调用它，尤其是在通过调用和实现的动画块中</li>
 <li>
+<p>此方法可重新加载用于构建表格的所有数据，包括单元格、节页眉和页脚、索引数组等。为了提高效率，表格视图只重新显示那些可见的行。如果表因重新加载而缩小，它会调整偏移量。表视图的代理或数据源在它希望表视图完全重新加载其数据时调用此方法。不应在插入或删除行的方法中调用它，尤其是在通过调用和实现的动画块中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -742,8 +706,6 @@
 </li>
 <li>
 <p>Cell的左滑右滑</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -774,7 +736,20 @@
 </div>
 </div></li>
 </ul>
-</li>
+<ul>
+<li>
+<p>iOS中会对scrollview进行显示优化，以避免在安全区域显示，这里给出如何设置不自动调整位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// 设置为.never即可让tableview的显示覆盖安全区域</span>
+</span></span><span class="line"><span class="cl"><span class="n">tableView</span><span class="p">.</span><span class="n">contentInsetAdjustmentBehavior</span> <span class="p">=</span> <span class="p">.</span><span class="n">never</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <h4 id="tableview的性能优化">TableView的性能优化</h4>
 <ol>

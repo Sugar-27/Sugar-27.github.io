@@ -4,7 +4,14 @@
     <link>http://sugar-27.github.io/posts/</link>
     <description>所有文章 | 欢迎来到Sugar的博客小站</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>45682h@mail.com (Sugar)</managingEditor>
-      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Sat, 27 Aug 2022 18:53:47 &#43;0800</lastBuildDate><atom:link href="http://sugar-27.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Fri, 02 Sep 2022 11:28:45 &#43;0800</lastBuildDate><atom:link href="http://sugar-27.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>Linux中的信号</title>
+  <link>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/</link>
+  <pubDate>Fri, 02 Sep 2022 11:28:45 &#43;0800</pubDate>
+  <author>Sugar</author>
+  <guid>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/</guid>
+  <description><![CDATA[]]></description>
+</item><item>
   <title>C&#43;&#43;的指针</title>
   <link>http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/</link>
   <pubDate>Sat, 27 Aug 2022 18:53:47 &#43;0800</pubDate>
@@ -66,13 +73,6 @@
   <pubDate>Sat, 11 Jun 2022 17:15:56 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c&#43;&#43;%E5%87%BD%E6%95%B0/</guid>
-  <description><![CDATA[]]></description>
-</item><item>
-  <title>常用C函数</title>
-  <link>http://sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0/</link>
-  <pubDate>Fri, 10 Jun 2022 21:00:04 &#43;0800</pubDate>
-  <author>Sugar</author>
-  <guid>http://sugar-27.github.io/posts/%E5%B8%B8%E7%94%A8c%E5%87%BD%E6%95%B0/</guid>
   <description><![CDATA[]]></description>
 </item></channel>
 </rss>

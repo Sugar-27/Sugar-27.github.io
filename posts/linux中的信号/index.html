@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Linux中的信号 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="" />
+<meta name="keywords" content="Linux" /><meta itemprop="name" content="Linux中的信号">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-09-02T11:28:45+08:00" />
+<meta itemprop="dateModified" content="2022-09-02T11:28:45+08:00" />
+<meta itemprop="wordCount" content="2093"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="Linux," /><meta property="og:title" content="Linux中的信号" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" /><meta property="og:image" content="http://sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-02T11:28:45+08:00" />
+<meta property="article:modified_time" content="2022-09-02T11:28:45+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Linux中的信号"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="欢迎来到Sugar的博客小站">
+<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" /><link rel="prev" href="http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux中的信号",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/sugar-27.github.io\/posts\/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7\/"
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "Linux","wordcount":  2093 ,
+    "url": "http:\/\/sugar-27.github.io\/posts\/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7\/","datePublished": "2022-09-02T11:28:45+08:00","dateModified": "2022-09-02T11:28:45+08:00","publisher": {
+      "@type": "Organization",
+      "name": "Sugar"},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": ""
+  }
+  </script></head>
+  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="欢迎来到Sugar的博客小站"
+    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header>
+<div class="search-dropdown desktop">
+  <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+  <div id="search-dropdown-mobile"></div>
+</div>
+<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+  </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">Linux中的信号</h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://github.com/Sugar-27"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer author"
+  
+  
+    class="author"
+  
+  
+><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
+    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
+    data-sizes="auto"
+    alt="Sugar"
+    title="Sugar" />&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;Linux</a></span></div>
+      <div class="post-meta-line"><span title=2022-09-02&#32;11:28:45>
+            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-02" >2022-09-02</time>
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 2093 字&nbsp;
+        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+    </div><div class="details toc" id="toc-static" kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#信号的概念">信号的概念</a></li>
+    <li><a href="#信号的类型">信号的类型</a></li>
+    <li><a href="#信号的处理">信号的处理</a></li>
+    <li><a href="#信号的作用">信号的作用</a></li>
+    <li><a href="#信号应用示例">信号应用示例</a>
+      <ul>
+        <li><a href="#屏蔽信号">屏蔽信号</a></li>
+        <li><a href="#针对特定信号自行设定处理方式">针对特定信号自行设定处理方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#发送信号">发送信号</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="linux中的信号">Linux中的信号</h1>
+<p>简单讲讲Linux中的信号</p>
+<h2 id="信号的概念">信号的概念</h2>
+<p>信号（signal）是软件中断，是进程之间相互传递消息的一种方法，用于通知进程发生了事件，但是，<strong>不能给进程传递任何数据</strong>。</p>
+<p>信号产生的原因有许多种，在Linux中可以使用<code>kill</code>或者<code>killall</code>命令发送特定信号</p>
+<h2 id="信号的类型">信号的类型</h2>
+<p>Linux下常见的信号如下，其中加粗的需要重点关注</p>
+<p>默认处理动作：</p>
+<ul>
+<li>A 缺省的动作是终止进程。</li>
+<li>B 缺省的动作是忽略此信号，将该信号丢弃，不做处理。</li>
+<li>C 缺省的动作是终止进程并进行内核映像转储（core dump），内核映像转储是指将进程数据在内存的映像和进程在内核结构中的部分内容以一定格式转储到文件系统，并且进程退出执行，这样做的好处是为程序员 提供了方便，使得他们可以得到进程当时执行时的数据值，允许他们确定转储的原因，并且可以调试他们的程序。</li>
+<li>D 缺省的动作是停止进程，进入停止状态的程序还能重新继续，一般是在调试的过程中。</li>
+<li>E 信号不能被捕获。</li>
+<li>F 信号不能被忽略。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>信号值</th>
+<th>默认处理动作</th>
+<th>发出信号的原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGHUP</td>
+<td>1</td>
+<td>A</td>
+<td>终端挂起或者控制进程终止</td>
+</tr>
+<tr>
+<td><strong>SIGINT</strong></td>
+<td><strong>2</strong></td>
+<td><strong>A</strong></td>
+<td><strong>键盘中断Ctrl+c</strong></td>
+</tr>
+<tr>
+<td>SIGQUIT</td>
+<td>3</td>
+<td>C</td>
+<td>键盘的退出键被按下</td>
+</tr>
+<tr>
+<td>SIGILL</td>
+<td>4</td>
+<td>C</td>
+<td>非法指令</td>
+</tr>
+<tr>
+<td>SIGABRT</td>
+<td>6</td>
+<td>C</td>
+<td>由abort(3)发出的退出指令</td>
+</tr>
+<tr>
+<td>SIGFPE</td>
+<td>8</td>
+<td>C</td>
+<td>浮点异常</td>
+</tr>
+<tr>
+<td><strong>SIGKILL</strong></td>
+<td><strong>9</strong></td>
+<td><strong>AEF</strong></td>
+<td><strong>采用kill -9 进程编号 强制杀死程序</strong></td>
+</tr>
+<tr>
+<td>SIGSEGV</td>
+<td>11</td>
+<td>C</td>
+<td>无效的内存引用</td>
+</tr>
+<tr>
+<td>SIGPIPE</td>
+<td>13</td>
+<td>A</td>
+<td>管道破裂，写一个没有读端口的管道。</td>
+</tr>
+<tr>
+<td><strong>SIGALRM</strong></td>
+<td><strong>14</strong></td>
+<td><strong>A</strong></td>
+<td><strong>由alarm()发出的信号</strong></td>
+</tr>
+<tr>
+<td><strong>SIGTERM</strong></td>
+<td><strong>15</strong></td>
+<td><strong>A</strong></td>
+<td><strong>采用“kill 进程编号”或“killall程序名”通知程序。</strong></td>
+</tr>
+<tr>
+<td><strong>SIGUSR1</strong></td>
+<td><strong>10</strong></td>
+<td><strong>A</strong></td>
+<td><strong>用户自定义信号1</strong></td>
+</tr>
+<tr>
+<td><strong>SIGUSR2</strong></td>
+<td><strong>12</strong></td>
+<td><strong>A</strong></td>
+<td><strong>用户自定义信号2</strong></td>
+</tr>
+<tr>
+<td><strong>SIGCHLD</strong></td>
+<td><strong>17</strong></td>
+<td><strong>B</strong></td>
+<td><strong>子进程结束信号</strong></td>
+</tr>
+<tr>
+<td>SIGCONT</td>
+<td>18</td>
+<td></td>
+<td>进程继续（曾被停止的进程）</td>
+</tr>
+<tr>
+<td>SIGSTOP</td>
+<td>19</td>
+<td>DEF</td>
+<td>终止进程</td>
+</tr>
+<tr>
+<td>SIGTSTP</td>
+<td>20</td>
+<td>D</td>
+<td>控制终端（tty）上按下停止键</td>
+</tr>
+<tr>
+<td>SIGTTIN</td>
+<td>21</td>
+<td>D</td>
+<td>后台进程企图从控制终端读</td>
+</tr>
+<tr>
+<td>SIGTTOU</td>
+<td>22</td>
+<td>D</td>
+<td>后台进程企图从控制终端写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="信号的处理">信号的处理</h2>
+<p>一般而言，进程对信号的处理方法有三种：</p>
+<ol>
+<li>
+<p>对该信号的处理采用系统的默认操作，大部分的信号的默认操作是终止进程</p>
+</li>
+<li>
+<p>设置中断的处理函数，收到信号后，由该函数来处理</p>
+</li>
+<li>
+<p>忽略某个信号，对该信号不做任何处理，就像未发生过一样</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// signal函数可以用来设置程序对信号的处理方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">sighandler_t</span> <span class="nf">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="n">sighandler_t</span> <span class="n">handler</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// signum表示信号的编号
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 参数handler表示对于信号的处理方式，有如下三种情况
+</span></span></span><span class="line"><span class="cl"><span class="c1">// - SIG_DFL：signal.h 预制的宏定义，用于恢复信号的处理方式为默认处理方式
+</span></span></span><span class="line"><span class="cl"><span class="c1">// - 一个自定义的信号处理函数 handler，执行函数内容
+</span></span></span><span class="line"><span class="cl"><span class="c1">// - SIG_IGN：忽略参数signum所指代的信号
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="信号的作用">信号的作用</h2>
+<p>信号的作用顾名思义，给出一个一个信号，起到一个通知的作用表示发生了某件事情，这里要注意它只起到通知，不起到告知具体信息</p>
+<p>比如说：</p>
+<blockquote>
+<p>服务程序运行在后台，如果想让中止它，杀掉不是个好办法，因为程序被杀的时候，程序突然死亡，没有安排善后工作。</p>
+<p>如果向服务程序发送一个信号，服务程序收到这个信号后，调用一个函数，在函数中编写善后的代码，程序就可以有计划的退出。</p>
+</blockquote>
+<p>再比如说：</p>
+<blockquote>
+<p>向服务程序发送0的信号，可以检测程序是否存活。</p>
+</blockquote>
+<h2 id="信号应用示例">信号应用示例</h2>
+<h3 id="屏蔽信号">屏蔽信号</h3>
+<p>一般在需要编辑一个服务器程序的时候，会先将所有的信号进行屏蔽，防止运行期间程序被一些预期之外的信号干扰</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">signal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">SIG_IGN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="针对特定信号自行设定处理方式">针对特定信号自行设定处理方式</h3>
+<p>比如针对<code>ctrl + C</code>以及<code>kill + 进程号</code>或者<code>killall + 进程名</code>这种目的是中断进程的信号。</p>
+<p>其中<code>ctrl + C</code>发送的信号是<code>SIGINT</code>信号，编号为2；<code>kill + 进程号</code>或者<code>killall + 进程名</code>发送的信号是<code>SIGTERM</code>信号，编号为15</p>
+<blockquote>
+<p>⚠️：另外还有一种方式会中断程序，即通过<code>kill -9 进程号</code>的方式发送编号为9的信号，此信号不能被捕获也不能被忽略，当发送这个信号时程序会直接停止运行，是强制关闭进程的一种措施</p>
+</blockquote>
+<p>设置SIGINT和SIGTERM两个信号的处理函数，这两个信号可以使用同一个处理函数，函数的代码是在程序运行结束前释放资源，增强程序的健壮性，完整程序如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">EXIT</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;收到了信号%d, 即将退出</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sig</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 这里应该填充程序的资源释放代码
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">// 进程退出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">signal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">SIG_IGN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">EXIT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">EXIT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;模拟执行一次任务，每次任务两秒钟</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="发送信号">发送信号</h2>
+<p>Linux操作系统提供了<code>kill</code>和<code>killall</code>命令向程序发送信号，C语言也提供了相对应的库函数，用于在程序中向其它进程或者线程发送信号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &lt;sys/types.h&gt;
+</span></span><span class="line"><span class="cl">#include &lt;signal.h&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int kill(pid_t pid, int sig);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里<code>sig</code>参数与之前终端发送的<code>sig</code>编号相同，要注意一下参数<code>pid</code>一共会有三种情况：</p>
+<ul>
+<li><code>pid&gt;0</code>将信号传给进程号为<code>pid</code>的进程</li>
+<li><code>pid=0</code>将信号传给和目前进程相同进程组的所有进程，常用于<strong>父进程给子进程发送信号</strong>，注意，<strong>发送信号者进程也会收到自己发出的信号</strong></li>
+<li><code>pid=-1</code>将信号<strong>广播传送给系统内所有的进程</strong>，例如系统关机时，会向所有的登录窗口广播关机信息</li>
+</ul>
+<p>返回值说明：</p>
+<ul>
+<li>
+<p>成功执行时，返回<code>0</code>；</p>
+</li>
+<li>
+<p>失败返回<code>-1</code>，errno被设为以下的某个值：</p>
+<ul>
+<li>
+<p><code>EINVAL</code>：指定的信号码无效（参数 sig 不合法）</p>
+</li>
+<li>
+<p><code>EPERM</code>：权限不够无法传送信号给指定进程</p>
+</li>
+<li>
+<p><code>ESRCH</code>：参数 pid 所指定的进程或进程组不存在</p>
+</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-09-02&#32;11:28:45>更新于 2022-09-02</span>
+      </div>
+      <div class="post-info-license "></div>
+    </div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" class="prev" rel="prev" title="C&#43;&#43;的指针"><i class="fa-solid fa-angle-left fa-fw"></i>C&#43;&#43;的指针</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="https://github.com/Sugar-27"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div></div>
+  </footer></div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+      <i class="fa-solid fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+      <i class="fa-solid fa-comment fa-fw"></i>
+    </a>
+  </div><div id="mask"></div>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+</html>
