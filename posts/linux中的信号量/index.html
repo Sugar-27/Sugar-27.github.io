@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Linux中的信号量 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="" />
+<meta name="keywords" content="Linux" /><meta itemprop="name" content="Linux中的信号量">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-09-03T15:28:36+08:00" />
+<meta itemprop="dateModified" content="2022-09-03T15:28:36+08:00" />
+<meta itemprop="wordCount" content="4256"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="Linux," /><meta property="og:title" content="Linux中的信号量" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F/" /><meta property="og:image" content="http://sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-03T15:28:36+08:00" />
+<meta property="article:modified_time" content="2022-09-03T15:28:36+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Linux中的信号量"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="欢迎来到Sugar的博客小站">
+<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F/" /><link rel="prev" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux中的信号量",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/sugar-27.github.io\/posts\/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F\/"
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "Linux","wordcount":  4256 ,
+    "url": "http:\/\/sugar-27.github.io\/posts\/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F\/","datePublished": "2022-09-03T15:28:36+08:00","dateModified": "2022-09-03T15:28:36+08:00","publisher": {
+      "@type": "Organization",
+      "name": "Sugar"},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": ""
+  }
+  </script></head>
+  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="欢迎来到Sugar的博客小站"
+    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+              
+            >
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li
+              class="menu-item"
+            ><a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header>
+<div class="search-dropdown desktop">
+  <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+  <div id="search-dropdown-mobile"></div>
+</div>
+<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+  </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">Linux中的信号量</h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://github.com/Sugar-27"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer author"
+  
+  
+    class="author"
+  
+  
+><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
+    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
+    data-sizes="auto"
+    alt="Sugar"
+    title="Sugar" />&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;Linux</a></span></div>
+      <div class="post-meta-line"><span title=2022-09-03&#32;15:28:36>
+            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-03" >2022-09-03</time>
+          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 4256 字&nbsp;
+        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+    </div><div class="details toc" id="toc-static" kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#信号量的概念">信号量的概念</a></li>
+    <li><a href="#linux中的信号量使用">Linux中的信号量使用</a></li>
+    <li><a href="#system-v信号量的使用">System V信号量的使用</a>
+      <ul>
+        <li><a href="#头文件">头文件</a></li>
+        <li><a href="#semget函数">semget函数</a></li>
+        <li><a href="#semctl函数">semctl函数</a></li>
+        <li><a href="#semop函数">semop函数</a></li>
+        <li><a href="#其他操作命令">其他操作命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#posix信号量的使用">POSIX信号量的使用</a>
+      <ul>
+        <li><a href="#头文件-1">头文件</a></li>
+        <li><a href="#信号量的类型sem_t">信号量的类型——sem_t</a></li>
+        <li><a href="#sem_init函数">sem_init函数</a></li>
+        <li><a href="#sem_destroy函数">sem_destroy函数</a></li>
+        <li><a href="#sem_wait函数">sem_wait函数</a></li>
+        <li><a href="#sem_trywait函数">sem_trywait函数</a></li>
+        <li><a href="#sem_timedwait函数">sem_timedwait函数</a></li>
+        <li><a href="#sem_post函数">sem_post函数</a></li>
+        <li><a href="#sem_getvalue函数">sem_getvalue函数</a></li>
+        <li><a href="#示例程序">示例程序</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="linux中的信号量">Linux中的信号量</h1>
+<h2 id="信号量的概念">信号量的概念</h2>
+<p>信号量本质上是一个计数器，用于协调多个进程（包括但不限于父子进程）或多个线程对共享数据对象的读/写。它<strong>不以传送数据为目的</strong>，一般会有两种作用：</p>
+<ol>
+<li>用来保护共享资源（共享内存、消息队列、socket连接池、数据库连接池等），保证共享资源在一个时刻只有一个进程独享，类似于互斥锁的操作</li>
+<li>用来实现<strong>生产者-消费者模型</strong>，其中生产者每生产一个对象对信号量+1，消费者每消费一个对象对信号量-1，如果没有可以被消费的对象则阻塞等待</li>
+</ol>
+<p>信号量是一个特殊的变量，只允许进程（线程）对它进行等待信号和发送信号操作。最简单的信号量是取值0和1的二元信号量，这是信号量最常见的形式。</p>
+<h2 id="linux中的信号量使用">Linux中的信号量使用</h2>
+<p>在Linux中，信号量有着两种实现：「传统的Systm V信号量」和「POSIX信号量」</p>
+<p>对于这两种信号量在系统所提供的函数中很容易进行区分：</p>
+<ul>
+<li>所有的Systm V信号量的函数名中没有下划线，例如<code>semget()</code>而不是<code>sem_get()</code></li>
+<li>相对应的，所有的POSIX信号量函数都有下划线</li>
+<li>另外，对于POSIX信号量，可以有命名的信号量，例如信号量有一个文件关联他们
+<ul>
+<li>比如在下面对照表中的POSIX最后三个函数就是用来关闭、打开、删除这样一个命名的信号量，而<code>sem_destroy()</code>和<code>sem_init()</code>仅仅供非命名信号量使用</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Systm V</th>
+<th style="text-align:left">POSIX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>semctl()</td>
+<td style="text-align:left">sem_getvalue()</td>
+</tr>
+<tr>
+<td>semget()</td>
+<td style="text-align:left">sem_post()</td>
+</tr>
+<tr>
+<td>semop()</td>
+<td style="text-align:left">sem_timedwait()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_trywait()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_wait()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_destroy()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_init()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_close()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_open()</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">sem_unlink()</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>引用一下网上对于这两者使用时的结论：</p>
+<p><strong>POSIX信号量来源于POSIX技术规范的实时扩展方案(POSIX Realtime Extension)，常用于线程（但其有名信号量也可用于进程）；system v信号量，常用于进程的同步。</strong></p>
+<p>这两者非常相近，但它们使用的函数调用各不相同。前一种的头文件为<code>semaphore.h</code>，函数调用为<code>sem_init()</code>，<code>sem_wait()</code>，<code>sem_post()</code>，<code>sem_destory()</code>等等。后一种头文件为<code>sys/sem.h</code>，函数调用为<code>semctl()</code>，<code>semget()</code>，<code>semop()</code>等函数</p>
+</blockquote>
+<h2 id="system-v信号量的使用">System V信号量的使用</h2>
+<h3 id="头文件">头文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/ipc.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/sem.h&gt;</span><span class="cp">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="semget函数">semget函数</h3>
+<ul>
+<li>
+<p>作用：得到一个信号量集标识符或创建一个信号量集对象并返回信号量集标识符</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">semget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nsems</span><span class="p">,</span> <span class="kt">int</span> <span class="n">semflg</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li><code>key</code>是信号量的键值，（类型定义：<code>typedef unsigned int key_t</code>），是信号量在系统中的编号，不同信号量的编号不能相同，这一点由程序员保证。key用十六进制表示比较好，便于查看和管理</li>
+<li><code>nsems</code>是创建信号量集中信号量的个数，该参数只在创建信号量集时有效，其他情况填1即可</li>
+<li><code>semflag</code>是一组标志，如果希望信号量不存在时创建一个新的信号量，可以和值<code>IPC_CREAT</code>做按位或操作。如果没有设置IPC_CREAT标志并且信号量不存在，就会返错误（errno的值为2，No such file or directory）。</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>
+<p>成功：返回信号量集的标识</p>
+</li>
+<li>
+<p>失败：返回-1，并设置errno</p>
+<p>错误代码：</p>
+<ul>
+<li>EACCESS：没有权限</li>
+<li>EEXIST：信号量集已经存在，无法创建</li>
+<li>EIDRM：信号量集已经删除</li>
+<li>ENOENT：信号量集不存在，同时semflg没有设置IPC_CREAT标志</li>
+<li>ENOMEM：没有足够的内存创建新的信号量集</li>
+<li>ENOSPC：超出限制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>如果semget创建了一个新的信号量集对象，则<code>semid_ds</code>结构成员变量的值设置如下：</p>
+<ul>
+<li>sem_otime设置为0</li>
+<li>sem_ctime设置为当前时间</li>
+<li>msg_qbytes设成系统的限制值</li>
+<li>sem_nsems设置为nsems参数的数值</li>
+<li>semflg的读写权限写入sem_perm.mode中</li>
+<li>sem_perm结构的uid和cuid成员被设置成当前进程的有效用户ID，gid和cuid成员被设置成当前进程的有效组ID</li>
+</ul>
+</li>
+<li>
+<p>示例代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 获取键值为0x5000的信号量，如果该信号量不存在，就创建它，代码如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">semid</span><span class="o">=</span><span class="n">semget</span><span class="p">(</span><span class="mh">0x5000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mo">0640</span><span class="o">|</span><span class="n">IPC_CREAT</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 获取键值为0x5000的信号量，如果该信号量不存在，返回-1，errno的值被设置为2，代码如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">semid</span><span class="o">=</span> <span class="n">semget</span><span class="p">(</span><span class="mh">0x5000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mo">0640</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="semctl函数">semctl函数</h3>
+<ul>
+<li>
+<p>作用：控制信号量（常用于设置信号量的初始值和销毁信号量）</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">semctl</span><span class="p">(</span><span class="kt">int</span> <span class="n">semid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sem_num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">command</span><span class="p">,</span> <span class="p">...);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>
+<p>semid是由semget函数返回的信号量标识</p>
+</li>
+<li>
+<p>sem_num是信号量集数组上的下标，表示某一个信号量，填0</p>
+</li>
+<li>
+<p>参数cmd是对信号量操作的命令种类，常用的有以下两个：</p>
+<ul>
+<li>
+<p><strong><code>IPC_RMID</code></strong>：销毁信号量，不需要第四个参数；</p>
+</li>
+<li>
+<p><strong><code>SETVAL</code></strong>：初始化信号量的值（信号量成功创建后，需要设置初始值），这个值由第四个参数决定。第四参数是一个自定义的联合体，联合体结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 用于信号灯操作的共同体。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">union</span> <span class="nc">semun</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="nc">semid_ds</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="o">*</span><span class="n">arry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回值根据操作的不同返回不同的值，具体查看手册</li>
+<li>失败：返回-1</li>
+</ul>
+</li>
+<li>
+<p>示例代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 销毁信号量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">semctl</span><span class="p">(</span><span class="n">semid</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">IPC_RMID</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 初始化信号量的值为1，信号量可用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">union</span> <span class="nc">semun</span> <span class="n">sem_union</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sem_union</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">semctl</span><span class="p">(</span><span class="n">semid</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">SETVAL</span><span class="p">,</span><span class="n">sem_union</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="semop函数">semop函数</h3>
+<ul>
+<li>
+<p>作用：对信号量集标识符为semid中的一个或多个信号量进行P操作或V操作</p>
+<ul>
+<li>V操作：把信号量的值+1，这个过程也称之为释放锁</li>
+<li>P操作：等待信号量的值大于1，如果等待成功，立即把信号量的值-1，这个过程也称之为等待锁</li>
+</ul>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">semop</span><span class="p">(</span><span class="kt">int</span> <span class="n">semid</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">sembuf</span> <span class="o">*</span><span class="n">sops</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">nsops</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>
+<p><code>semid</code>：由semget函数返回的信号量标识</p>
+</li>
+<li>
+<p><code>nsops</code>：操作信号量的个数，即sops结构变量的个数，设置它的为1（只对一个信号量的操作）</p>
+</li>
+<li>
+<p><code>sops</code>是一个指向进行操作的信号量集结构体数组的首地址的指针，此结构结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">sembuf</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">short</span> <span class="n">sem_num</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">  <span class="kt">short</span> <span class="n">sem_op</span><span class="p">;</span>    <span class="c1">// 。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">short</span> <span class="n">sem_flg</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">sembuf</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span> <span class="n">sem_num</span><span class="p">;</span>	<span class="c1">// 信号量集的个数，单个信号量设置为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">short</span> <span class="kt">int</span> <span class="n">sem_op</span><span class="p">;</span>		<span class="c1">// 大于零则进行V操作+对应值，小于零则进行P操作-对应值，如果剩余量不够减则会阻塞等待；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">short</span> <span class="kt">int</span> <span class="n">sem_flg</span><span class="p">;</span>	<span class="c1">// 把此标志设置为SEM_UNDO，操作系统将跟踪这个信号量。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                   <span class="c1">// 如果当前进程退出时没有释放信号量，操作系统将释放信号量，避免资源被死锁。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回信号量集的标识符</li>
+<li>失败：返回-1，并设置errno
+错误代码：
+<ul>
+<li>E2BIG：一次对信号量个数的操作超过了系统限制</li>
+<li>EACCESS：权限不够</li>
+<li>EAGAIN：使用了IPC_NOWAIT，但操作不能继续进行</li>
+<li>EFAULT：sops指向的地址无效</li>
+<li>EIDRM：信号量集已经删除</li>
+<li>EINTR：当睡眠时接收到其他信号</li>
+<li>EINVAL：信号量集不存在,或者semid无效</li>
+<li>ENOMEM：使用了SEM_UNDO，但无足够的内存创建所需的数据结构</li>
+<li>ERANGE：信号量值超出范围</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>示例代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 等待信号量的值大于0，如果等待成功，立即把信号量的值减1；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">sembuf</span> <span class="n">sem_b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sem_b</span><span class="p">.</span><span class="n">sem_num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sem_b</span><span class="p">.</span><span class="n">sem_op</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sem_b</span><span class="p">.</span><span class="n">sem_flg</span> <span class="o">=</span> <span class="n">SEM_UNDO</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">semop</span><span class="p">(</span><span class="n">sem_id</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sem_b</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 将信号量的值+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">struct</span> <span class="nc">sembuf</span> <span class="n">sem_b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">sem_b</span><span class="p">.</span><span class="n">sem_num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">sem_b</span><span class="p">.</span><span class="n">sem_op</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">sem_b</span><span class="p">.</span><span class="n">sem_flg</span> <span class="o">=</span> <span class="n">SEM_UNDO</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">semop</span><span class="p">(</span><span class="n">sem_id</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sem_b</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="其他操作命令">其他操作命令</h3>
+<ul>
+<li>
+<p>用<code>ipcs -s</code>可以查看系统的信号量，内容有键值（key），信号量编号（semid），创建者（owner），权限（perms），信号量数（nsems）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  c ipcs -s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--------- 信号量数组 -----------
+</span></span><span class="line"><span class="cl">键        semid      拥有者  权限     nsems  
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>用<code>ipcrm sem + 信号量编号</code>，可以手工删除信号量</p>
+</li>
+</ul>
+<h2 id="posix信号量的使用">POSIX信号量的使用</h2>
+<h3 id="头文件-1">头文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;semaphore.h&gt;</span><span class="cp">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="信号量的类型sem_t">信号量的类型——sem_t</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">int</span> <span class="n">sem_t</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sem_init函数">sem_init函数</h3>
+<ul>
+<li>
+<p>作用：初始化信号量</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_init</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pshared</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<ul>
+<li>参数：
+<ul>
+<li>sem : 信号量变量的地址</li>
+<li>pshared : 0 用在线程间 ，非0用在进程间</li>
+<li>value : 信号量中初始化的值</li>
+</ul>
+</li>
+<li>返回值：
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno
+错误代码：
+<ul>
+<li><code>EINVAL</code>：设定的值超过<code>SEM_VALUE_MAX</code></li>
+<li><code>ENOSYS</code>： <code>pshared</code>非零，但系统不支持进程共享</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="sem_destroy函数">sem_destroy函数</h3>
+<ul>
+<li>
+<p>作用：释放指向的地址处的无名信号量资源（只能释放由<code>sem_init</code>初始化的信号量）</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_destroy</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>sem：<code>sem_init</code>函数中初始化的信号量地址</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno
+错误代码：
+<ul>
+<li><code>EINVAL</code>： <code>sem</code>不是有效的信号量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="sem_wait函数">sem_wait函数</h3>
+<ul>
+<li>
+<p>作用：对信号量加锁，调用一次对信号量的值-1，如果值为0，就阻塞（也就是P操作）</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_wait</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>sem：<code>sem_init</code>函数中初始化的信号量地址</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno 错误代码
+错误码如下：
+<ul>
+<li><code>EINTR</code>： 呼叫被信号处理程序打断</li>
+<li><code>EINVAL</code> ：<code>sem</code>不是有效的信号量</li>
+<li><code>ETIMEDOUT</code>：超时</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="sem_trywait函数">sem_trywait函数</h3>
+<ul>
+<li>
+<p>作用：与sem_wait相同，但不阻塞等待，如果不能执行则直接返回错误</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_trywait</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>sem：<code>sem_init</code>函数中初始化的信号量地址</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno 错误代码为<code>EAGAIN</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="sem_timedwait函数">sem_timedwait函数</h3>
+<ul>
+<li>
+<p>作用：与sem_wait函数相同，但阻塞时间有限制，如果超过设定阻塞时间仍不能执行则返回错误</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_timedwait</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="nc">timespec</span> <span class="o">*</span><span class="n">abs_timeout</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>
+<p>sem：<code>sem_init</code>函数中初始化的信号量地址</p>
+</li>
+<li>
+<p>abs_timeout：timespec类型的指针，里面填充的数据是限制的阻塞时间，timespec结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">timespec</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time_t</span> <span class="n">tv_sec</span><span class="p">;</span>      <span class="cm">/* Seconds */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span>   <span class="n">tv_nsec</span><span class="p">;</span>     <span class="cm">/* Nanoseconds [0 .. 999999999] */</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno 错误代码，如果是超时则设置为<code>ETIMEDOUT</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="sem_post函数">sem_post函数</h3>
+<ul>
+<li>作用：对信号量解锁，调用一次对信号量的值+1</li>
+</ul>
+<ul>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_post</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>参数：</p>
+<ul>
+<li>sem：<code>sem_init</code>函数中初始化的信号量地址</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno 错误代码
+错误码：
+<ul>
+<li>EINVAL：sem不是有效的信号量</li>
+<li>EOVERFLOW：信号量的最大允许值将被超过</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="sem_getvalue函数">sem_getvalue函数</h3>
+<ul>
+<li>
+<p>作用：获取信号量当前的值，并将这个值保存到参数中的地址中</p>
+</li>
+<li>
+<p>函数原型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sem_getvalue</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">sval</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用需链接pthread库</p>
+</blockquote>
+</li>
+<li>
+<p>参数：</p>
+<ul>
+<li>sem：<code>sem_init</code>函数中初始化的信号量地址</li>
+<li>sval：存储信号值的地址</li>
+</ul>
+</li>
+<li>
+<p>返回值：</p>
+<ul>
+<li>成功：返回0</li>
+<li>失败：返回-1，并设置errno 错误代码<code>EINVAL</code> (sem不是有效的信号量)</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例程序">示例程序</h3>
+<p>使用多线程完成生产者-消费者模型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;semaphore.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建一个互斥量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">pthread_mutex_t</span> <span class="n">mutex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建两个信号量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sem_t</span> <span class="n">psem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sem_t</span> <span class="n">csem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Node</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">Node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">Node</span> <span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span> <span class="nf">producer</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 不断的创建新的节点，添加到链表中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sem_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">psem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">struct</span> <span class="nc">Node</span> <span class="o">*</span> <span class="n">newNode</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">Node</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;add node, num : %d, tid : %ld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">,</span> <span class="n">pthread_self</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sem_post</span><span class="p">(</span><span class="o">&amp;</span><span class="n">csem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span> <span class="nf">customer</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sem_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">csem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 保存头结点的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">struct</span> <span class="nc">Node</span> <span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;del node, num : %d, tid : %ld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">,</span> <span class="n">pthread_self</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">free</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sem_post</span><span class="p">(</span><span class="o">&amp;</span><span class="n">psem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>  <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sem_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">psem</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sem_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">csem</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建5个生产者线程，和5个消费者线程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pthread_t</span> <span class="n">ptids</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">ctids</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ptids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">producer</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_detach</span><span class="p">(</span><span class="n">ptids</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pthread_detach</span><span class="p">(</span><span class="n">ctids</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_mutex_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-09-03&#32;15:28:36>更新于 2022-09-03</span>
+      </div>
+      <div class="post-info-license "></div>
+    </div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/" class="prev" rel="prev" title="Linux中的共享内存"><i class="fa-solid fa-angle-left fa-fw"></i>Linux中的共享内存</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="https://github.com/Sugar-27"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreffer"
+  
+  
+  
+>Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div></div>
+  </footer></div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+      <i class="fa-solid fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+      <i class="fa-solid fa-comment fa-fw"></i>
+    </a>
+  </div><div id="mask"></div>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+</html>

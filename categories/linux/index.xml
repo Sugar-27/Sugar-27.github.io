@@ -4,7 +4,14 @@
     <link>http://sugar-27.github.io/categories/linux/</link>
     <description>Linux - 分类 - 欢迎来到Sugar的博客小站</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>45682h@mail.com (Sugar)</managingEditor>
-      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Sat, 03 Sep 2022 02:22:01 &#43;0800</lastBuildDate><atom:link href="http://sugar-27.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Sat, 03 Sep 2022 15:28:36 &#43;0800</lastBuildDate><atom:link href="http://sugar-27.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
+  <title>Linux中的信号量</title>
+  <link>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F/</link>
+  <pubDate>Sat, 03 Sep 2022 15:28:36 &#43;0800</pubDate>
+  <author>Sugar</author>
+  <guid>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F/</guid>
+  <description><![CDATA[]]></description>
+</item><item>
   <title>Linux中的共享内存</title>
   <link>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/</link>
   <pubDate>Sat, 03 Sep 2022 02:22:01 &#43;0800</pubDate>
