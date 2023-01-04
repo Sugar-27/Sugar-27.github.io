@@ -4,7 +4,14 @@
     <link>http://sugar-27.github.io/tags/c&#43;&#43;%E8%AF%AD%E6%B3%95/</link>
     <description>C&#43;&#43;语法 - 标签 - 欢迎来到Sugar的博客小站</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>45682h@mail.com (Sugar)</managingEditor>
-      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Sat, 27 Aug 2022 18:53:47 &#43;0800</lastBuildDate><atom:link href="http://sugar-27.github.io/tags/c&#43;&#43;%E8%AF%AD%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>45682h@mail.com (Sugar)</webMaster><lastBuildDate>Wed, 14 Dec 2022 21:47:38 &#43;0800</lastBuildDate><atom:link href="http://sugar-27.github.io/tags/c&#43;&#43;%E8%AF%AD%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+  <title>现代C&#43;&#43;中的类型推导</title>
+  <link>http://sugar-27.github.io/posts/%E7%8E%B0%E4%BB%A3c&#43;&#43;%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/</link>
+  <pubDate>Wed, 14 Dec 2022 21:47:38 &#43;0800</pubDate>
+  <author>Sugar</author>
+  <guid>http://sugar-27.github.io/posts/%E7%8E%B0%E4%BB%A3c&#43;&#43;%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/</guid>
+  <description><![CDATA[]]></description>
+</item><item>
   <title>C&#43;&#43;的指针</title>
   <link>http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/</link>
   <pubDate>Sat, 27 Aug 2022 18:53:47 &#43;0800</pubDate>
