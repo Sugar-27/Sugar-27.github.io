@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <title>iOS-UIStackView使用指南 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
 <meta name="author-link" content="https://github.com/Sugar-27">
-<meta name="description" content="" />
-<meta name="keywords" content="iOS" /><meta itemprop="name" content="iOS-UIStackView使用指南">
+<meta name="description" content="This is my new Hugo FixIt site" /><meta name="keywords" content='iOS' /><meta itemprop="name" content="iOS-UIStackView使用指南">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-08-17T23:10:32+08:00" />
 <meta itemprop="dateModified" content="2022-08-17T23:10:32+08:00" />
 <meta itemprop="wordCount" content="3645"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
@@ -24,10 +22,10 @@
 
 <meta name="twitter:title" content="iOS-UIStackView使用指南"/>
 <meta name="twitter:description" content=""/>
-<meta name="application-name" content="欢迎来到Sugar的博客小站">
-<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="prev" href="http://sugar-27.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/" /><link rel="next" href="http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="prev" href="http://sugar-27.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/" /><link rel="next" href="http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -39,80 +37,57 @@
     },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "iOS","wordcount":  3645 ,
     "url": "http:\/\/sugar-27.github.io\/posts\/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97\/","datePublished": "2022-08-17T23:10:32+08:00","dateModified": "2022-08-17T23:10:32+08:00","publisher": {
       "@type": "Organization",
-      "name": "Sugar"},"author": {
+      "name": ""},"author": {
         "@type": "Person",
         "name": "Sugar"
       },"description": ""
   }
   </script></head>
-  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="欢迎来到Sugar的博客小站"><img
-    class="lazyload logo"
-    src="/svg/loading.min.svg"
-    data-src="/logo.png"
-    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
-    data-sizes="auto"
-    alt="欢迎来到Sugar的博客小站"
-    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <a href="/" title="欢迎来到Sugar的博客小站"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="欢迎来到Sugar的博客小站" data-alt="欢迎来到Sugar的博客小站" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
     <nav>
-      <ul class="menu"><li
-              class="menu-item"
-              
-            >
+      <ul class="menu"><li class="menu-item">
               <a
                 class="menu-link"
                 href="/posts/"
                 
                 
-              >文章</a></li><li
-              class="menu-item"
-              
-            >
+              >文章</a></li><li class="menu-item">
               <a
                 class="menu-link"
                 href="/categories/"
                 
                 
-              >分类</a></li><li
-              class="menu-item"
-              
-            >
+              >分类</a></li><li class="menu-item">
               <a
                 class="menu-link"
                 href="/tags/"
                 
                 
               >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
-            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
             <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-              <i class="fa-solid fa-search fa-fw"></i>
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
             </a>
             <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-              <i class="fa-solid fa-times-circle fa-fw"></i>
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
             </a>
             <span class="search-button search-loading" id="search-loading-desktop">
-              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
             </span>
           </li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw"></i>
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
         </li>
       </ul>
     </nav>
   </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile animate__faster" id="header-mobile">
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="欢迎来到Sugar的博客小站"><img
-    class="lazyload logo"
-    src="/svg/loading.min.svg"
-    data-src="/logo.png"
-    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
-    data-sizes="auto"
-    alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+        <a href="/" title="欢迎来到Sugar的博客小站"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="/logo.png" data-alt="/logo.png" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>
@@ -120,15 +95,15 @@
     <nav>
       <ul class="menu" id="menu-mobile"><li class="search-wrapper">
             <div class="search mobile" id="search-mobile">
-              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
               <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                <i class="fa-solid fa-search fa-fw"></i>
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
               </a>
               <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                <i class="fa-solid fa-times-circle fa-fw"></i>
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
               </a>
               <span class="search-button search-loading" id="search-loading-mobile">
-                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
               </span>
             </div>
             <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
@@ -137,79 +112,51 @@
           </li><li
               class="menu-item"
             ><a
-                class="menu-link"
-                href="/posts/"
-                
-                
-              >文章</a></li><li
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >文章</a></li><li
               class="menu-item"
             ><a
-                class="menu-link"
-                href="/categories/"
-                
-                
-              >分类</a></li><li
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
               class="menu-item"
             ><a
-                class="menu-link"
-                href="/tags/"
-                
-                
-              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw"></i>
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
         </li></ul>
     </nav>
   </div>
-</header>
-<div class="search-dropdown desktop">
-  <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-  <div id="search-dropdown-mobile"></div>
-</div>
-<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside>
 
   <aside class="aside-custom">
-    
-  </aside>
+    </aside>
 
   <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX">iOS-UIStackView使用指南</h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a
-  href="https://github.com/Sugar-27"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer author"
-  
-  
-    class="author"
-  
-  
-><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
-    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
-    data-sizes="auto"
-    alt="Sugar"
-    title="Sugar" />&nbsp;Sugar</a></span>
-          <span class="post-category">收录于 <a href="/categories/ios/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;iOS</a></span></div>
-      <div class="post-meta-line"><span title=2022-08-17&#32;23:10:32>
-            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-17" >2022-08-17</time>
-          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 3645 字&nbsp;
-        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
-    </div><div class="details toc" id="toc-static" kept="false">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>iOS-UIStackView使用指南</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Sugar-27" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200" srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x" sizes="auto" data-title="Sugar" data-alt="Sugar" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/ios/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> iOS</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-17&#32;23:10:32><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-17">2022-08-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3645 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
-          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
@@ -229,24 +176,12 @@
     </li>
   </ul>
 </nav></div>
-      </div><div
-      class="content"
-      id="content"
-      
-      
-    ><h1 id="uistackview使用指南">UIStackView使用指南</h1>
+      </div><div class="content" id="content"><h1 id="uistackview使用指南">UIStackView使用指南</h1>
 <h2 id="概述">概述</h2>
 <p>一般遇到两个或以上的控件进行一行或一列布局时，或行列组合成卡片形式的布局时，使用 <code>UIStackView</code> 是最简单有效的方案，例如一些 tab 的展示时，可简单使用 <code>UIStackView + UIScrollView</code> 实现。当然要排列的控件比较多，且需要分页加载的时候，请考虑使用 <code>UICollectionView</code>。</p>
 <p>所以这里的 Stack 不是堆栈的意思，也不存在压栈、弹栈的操作，可以理解为“堆叠”。UIStackView实现了U界面×轴和丫轴方向上的堆叠。类比理解，Swiftul 带来的 ZStack 就是Z轴方向上的视图堆叠。</p>
 <p>一图概之：</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png"
-    title="image-20220730025520477" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300255498.png 2x" sizes="auto" data-title="image-20220730025520477" data-alt="image-20220730025520477" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 <p>基本要点：</p>
 <ul>
 <li>基于 Auto Layout 布局子视图。UIStackView 自身也需要使用 Auto Layout 布局，使用 frame 布局可能效果不一定符合预期。</li>
@@ -255,69 +190,17 @@
 <li>阄割了 UView 基类的一些特性，如设置 <code>backgroundColor</code></li>
 </ul>
 <p>UIStackView 是 Apple 基于 Flexbox 思想来实现的布局，虽然是以一个控件 （UlView 子类）呈现，但它做的更多是布局其加入子视图。这种布局思想更接近物理世界的直觉。</p>
-<p>Flexbox 在2009 年被W3C 提出，可以很简单、完整地实现各种页面布局，而且还是响应式的，开始被应用于前端领域，目前所有浏览器都已支持。后来通过 React Native 和 Weex等框架，它被带入到客户端开发中，同时支持了 i0s 和 Android。想了解 Flexbax 的详细 CSS布局，可参阅 <a
-  href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer"
-  
-  
-  
->Flex 布局教程：语法篇-阮一峰的网络日志<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a>。</p>
+<p>Flexbox 在2009 年被W3C 提出，可以很简单、完整地实现各种页面布局，而且还是响应式的，开始被应用于前端领域，目前所有浏览器都已支持。后来通过 React Native 和 Weex等框架，它被带入到客户端开发中，同时支持了 i0s 和 Android。想了解 Flexbax 的详细 CSS布局，可参阅 <a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html"target="_blank" rel="external nofollow noopener noreferrer">Flex 布局教程：语法篇-阮一峰的网络日志<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>。</p>
 <p>要想更直观地体验把玩 Flexbox 布局，可参阅以下链接：</p>
 <ul>
 <li>
-<p><a
-  href="https://flexbox.help/"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer"
-  
-  
-  
->display: flex<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></p>
+<p><a href="https://flexbox.help/"target="_blank" rel="external nofollow noopener noreferrer">display: flex<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
 </li>
 <li>
-<p><a
-  href="https://flexboxfroggy.com/"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer"
-  
-  
-  
->Flexbox Froggy - A game for learning CSS flexbox<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></p>
+<p><a href="https://flexboxfroggy.com/"target="_blank" rel="external nofollow noopener noreferrer">Flexbox Froggy - A game for learning CSS flexbox<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
 </li>
 <li>
-<p><a
-  href="https://the-echoplex.net/flexyboxes/"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer"
-  
-  
-  
->Flexy Boxes — CSS flexbox playground and code generation tool<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1"></i></a></p>
+<p><a href="https://the-echoplex.net/flexyboxes/"target="_blank" rel="external nofollow noopener noreferrer">Flexy Boxes — CSS flexbox playground and code generation tool<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
 </li>
 </ul>
 <p>要想在iOS完整体验 Flexbox 布局，可使用 Texture 中的 ASStackLayoutSpec。一些聪明的开发者通过UICollectionViewLayout也实现了简单的 Flexbox 布局，如 UICollectionViewFlexboxLayouto SwiftUl也引入了些 Flexbox 布局，如 HStack、 vStack 和 ZStack，可参阅 Building layouts with UIStackViews 简单体验其为布局带来的便利</p>
@@ -363,14 +246,7 @@
 <p>若修改上述属性无法达到你的预期效果，则优先检查 Xcode 控制台是否输出了 Auto Layout 约束冲突的错误日志，从中检查需要修改的属性或补充的约束。</p>
 <h3 id="nslayoutconstraintaxis">NSLayoutConstraint.Axis</h3>
 <p>默认为<code>horizontal</code>水平方向</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png"
-    title="image-20220730030808345" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300308371.png 2x" sizes="auto" data-title="image-20220730030808345" data-alt="image-20220730030808345" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 <h3 id="uistackviewdistribution">UIStackView.Distribution</h3>
 <p>定义沿 UIStackView 轴方向的子视图的大小和位置的布局。</p>
 <p>除了 <code>fillEqually</code> 以外的 <code>distribution</code>，UStackView 在沿轴方向计算尺寸时，会使用每个子视图的 <code>intrinsicContentsize</code> 属性。而 <code>fiLLEqually</code> 会相等调整子视图的大小，使其在轴方向的长度是一致的，如果可能，UIStackView 会拉伸所有子视图，以匹配轴方向最大内容大小的视图。</p>
@@ -380,51 +256,23 @@
 默认情况，UIStackView 调整其子视图的大小,以填充轴方向上的可用空间</p>
 <p>当子视图塞不进 UIStackView 时,UIStackView 根据其抗压优先级 (compression resistance priority) 收缩视图</p>
 <p>当子视图没有塞满UIStackView时，UIStackView根据其拥抱优先级(hugging priority)拉伸时图</p>
-<p>当存在歧义时,UIStackView 根据子视图在 <code>arrangedSubviews</code> 中的索引调整子视图的大小<img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png"
-    title="image-20220730031415745" /></p>
+<p>当存在歧义时,UIStackView 根据子视图在 <code>arrangedSubviews</code> 中的索引调整子视图的大小<img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300314766.png 2x" sizes="auto" data-title="image-20220730031415745" data-alt="image-20220730031415745" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>fillEqually</code></p>
 <p>UIStackView 调整其子视图的大小，以填充轴方向上的可用空间。子视图会拉伸调整大小（匹配最大的子视图），以保持轴方向上的大小都相等。</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png"
-    title="image-20220730031547748" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300315773.png 2x" sizes="auto" data-title="image-20220730031547748" data-alt="image-20220730031547748" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>fillPropertionlly</code></p>
-<p>UIStackView 调整其子视图的大小，以填充轴方向上的可用空间。视图根据其沿 UIStackView 轴的内在内容大小按比例调整大小。<img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png"
-    title="image-20220730031632289" /></p>
+<p>UIStackView 调整其子视图的大小，以填充轴方向上的可用空间。视图根据其沿 UIStackView 轴的内在内容大小按比例调整大小。<img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312346.png 2x" sizes="auto" data-title="image-20220730031632289" data-alt="image-20220730031632289" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>equalSpacing</code></p>
 <p>UIStackView 放置排列子视图，以填充轴方向上的可用空间。</p>
 <p>当排列的视图没有填充 UIStackView 时：UIstackview 会均匀地填充视图之间行间距。即<strong>此时的 spaicing 只限定了最小的间距</strong>。</p>
 <p>当子视图塞不进 UIStackView 时，UIStackView 会根据其抗压优先级收缩视图。</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png"
-    title="image-20220730031757632" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300317670.png 2x" sizes="auto" data-title="image-20220730031757632" data-alt="image-20220730031757632" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>equalCentering</code></p>
@@ -432,14 +280,7 @@
 <p>当⼦视图塞不进 UIStackView 时，UIStackView 收缩间距，直到达到 spaicing 值。若⼦视图仍塞不进UIStackView，则会根据其抗压优先级收缩子视图</p>
 <p>当存在歧义时，UIStackView 会根据其在 <code>arrangedsubviews</code> 中的索引收缩子视图</p>
 <p>为了保持⼦视图内容⼤⼩，UIStackView 会突破中点等距布局。同样，为保持⼦视图间的最⼩间距， UIStackView 会压缩⼦视图的内容⼤⼩。</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png"
-    title="image-20220730032133824" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312548.png 2x" sizes="auto" data-title="image-20220730032133824" data-alt="image-20220730032133824" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 </ol>
 <h3 id="uistackviewalignment">UIStackView.Alignment</h3>
@@ -449,89 +290,33 @@
 <li>
 <p><code>fill</code>
 默认。UIStackView 调整其子视图大小，以填充轴正交方向上的可用空间。
-<img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png"
-    title="image-20220730032505689" /></p>
+<img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312933.png 2x" sizes="auto" data-title="image-20220730032505689" data-alt="image-20220730032505689" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>center</code></p>
 <p>UIStackView 把⼦视图中点沿轴对⻬，即垂直方向居中对⻬。</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png"
-    title="image-20220730032549929" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312214.png 2x" sizes="auto" data-title="image-20220730032549929" data-alt="image-20220730032549929" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>leading</code>：横轴时也可以用<code>top</code></p>
 <p>UIStackView把子视图沿着前边缘对齐</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png"
-    title="image-20220730032752776" /></p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png"
-    title="image-20220730032733483" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312324.png 2x" sizes="auto" data-title="image-20220730032752776" data-alt="image-20220730032752776" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312359.png 2x" sizes="auto" data-title="image-20220730032733483" data-alt="image-20220730032733483" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>trailing</code>：横轴时也可以用<code>bottom</code></p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png"
-    title="image-20220730032901326" />
-<img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png"
-    title="image-20220730032939057" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312503.png 2x" sizes="auto" data-title="image-20220730032901326" data-alt="image-20220730032901326" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>
+<img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208172312511.png 2x" sizes="auto" data-title="image-20220730032939057" data-alt="image-20220730032939057" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>fisrtBaseline</code></p>
 <p>仅横轴有效，UIStackView根据首个基线对齐排列子视图</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png"
-    title="image-20220730033031455" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300330501.png 2x" sizes="auto" data-title="image-20220730033031455" data-alt="image-20220730033031455" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 <li>
 <p><code>lastBaseline</code></p>
 <p>仅纵轴有效，UIStackView根据末尾基线对齐排列子视图</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png"
-    title="image-20220730033132150" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207300331178.png 2x" sizes="auto" data-title="image-20220730033132150" data-alt="image-20220730033132150" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 </li>
 </ol>
 <h3 id="spacing间距">Spacing间距</h3>
@@ -562,14 +347,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过这个方法可以设置子视图<em><strong>之间</strong></em>的间距，如下图所示，只可以设置两个subView之间的间距，而不可以设置一个subView到supperView的边缘的距离</p>
-<p><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png"
-    title="image-20220731191344940" /></p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202207311913988.png 2x" sizes="auto" data-title="image-20220731191344940" data-alt="image-20220731191344940" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 <p>这个时候可以通过给边缘位置添加一个占位视图的方式来进行相关设置，这里简单封装一个占位视图：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -741,51 +519,36 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2022-08-17&#32;23:10:32>更新于 2022-08-17</span>
-      </div>
-      <div class="post-info-license "></div>
-    </div>
+        <span title=2022-08-17&#32;23:10:32>更新于 2022-08-17&nbsp;</span>
+      </div></div>
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span></span>
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-title="iOS-UIStackView使用指南" data-hashtags="iOS"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-hashtag="iOS"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-title="iOS-UIStackView使用指南"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/ios/">iOS</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ios/' class="post-tag">iOS</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="字符串算法"><i class="fa-solid fa-angle-left fa-fw"></i>字符串算法</a>
-      <a href="/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="next" rel="next" title="iOS-UITableView使用指南">iOS-UITableView使用指南<i class="fa-solid fa-angle-right fa-fw"></i></a></div>
+  <div class="post-nav"><a href="/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/" class="post-nav-item" rel="prev" title="字符串算法"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>字符串算法</a>
+      <a href="/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-nav-item" rel="next" title="iOS-UITableView使用指南">iOS-UITableView使用指南<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
-              <a
-  href="https://github.com/Sugar-27"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer"
-  
-  
-  
->Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2022032869号-1</a></span></div></div>
-  </footer></div><div class="widgets">
-  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-      <i class="fa-solid fa-arrow-up fa-fw"></i>
-    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-      <i class="fa-solid fa-comment fa-fw"></i>
-    </a>
-  </div><div id="mask"></div>
-</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+              <a href="https://github.com/Sugar-27"target="_blank" rel="external nofollow noopener noreferrer">Sugar</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line beian"><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2022032869号-1</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
 </html>

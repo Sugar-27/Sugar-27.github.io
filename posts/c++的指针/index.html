@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <title>C&#43;&#43;的指针 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
 <meta name="author-link" content="https://github.com/Sugar-27">
-<meta name="description" content="" />
-<meta name="keywords" content="C&#43;&#43;语法" /><meta itemprop="name" content="C&#43;&#43;的指针">
+<meta name="description" content="This is my new Hugo FixIt site" /><meta name="keywords" content='C&#43;&#43;语法' /><meta itemprop="name" content="C&#43;&#43;的指针">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-08-27T18:53:47+08:00" />
 <meta itemprop="dateModified" content="2022-08-27T18:53:47+08:00" />
 <meta itemprop="wordCount" content="8056"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
@@ -24,10 +22,10 @@
 
 <meta name="twitter:title" content="C&#43;&#43;的指针"/>
 <meta name="twitter:description" content=""/>
-<meta name="application-name" content="欢迎来到Sugar的博客小站">
-<meta name="apple-mobile-web-app-title" content="欢迎来到Sugar的博客小站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" /><link rel="prev" href="http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="next" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" /><link rel="prev" href="http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" /><link rel="next" href="http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -39,80 +37,57 @@
     },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\u002b\u002b语法","wordcount":  8056 ,
     "url": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E7%9A%84%E6%8C%87%E9%92%88\/","datePublished": "2022-08-27T18:53:47+08:00","dateModified": "2022-08-27T18:53:47+08:00","publisher": {
       "@type": "Organization",
-      "name": "Sugar"},"author": {
+      "name": ""},"author": {
         "@type": "Person",
         "name": "Sugar"
       },"description": ""
   }
   </script></head>
-  <body header-desktop="sticky" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="欢迎来到Sugar的博客小站"><img
-    class="lazyload logo"
-    src="/svg/loading.min.svg"
-    data-src="/logo.png"
-    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
-    data-sizes="auto"
-    alt="欢迎来到Sugar的博客小站"
-    title="欢迎来到Sugar的博客小站" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <a href="/" title="欢迎来到Sugar的博客小站"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="欢迎来到Sugar的博客小站" data-alt="欢迎来到Sugar的博客小站" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
     <nav>
-      <ul class="menu"><li
-              class="menu-item"
-              
-            >
+      <ul class="menu"><li class="menu-item">
               <a
                 class="menu-link"
                 href="/posts/"
                 
                 
-              >文章</a></li><li
-              class="menu-item"
-              
-            >
+              >文章</a></li><li class="menu-item">
               <a
                 class="menu-link"
                 href="/categories/"
                 
                 
-              >分类</a></li><li
-              class="menu-item"
-              
-            >
+              >分类</a></li><li class="menu-item">
               <a
                 class="menu-link"
                 href="/tags/"
                 
                 
               >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
-            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
             <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-              <i class="fa-solid fa-search fa-fw"></i>
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
             </a>
             <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-              <i class="fa-solid fa-times-circle fa-fw"></i>
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
             </a>
             <span class="search-button search-loading" id="search-loading-desktop">
-              <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
             </span>
           </li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw"></i>
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
         </li>
       </ul>
     </nav>
   </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile animate__faster" id="header-mobile">
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="欢迎来到Sugar的博客小站"><img
-    class="lazyload logo"
-    src="/svg/loading.min.svg"
-    data-src="/logo.png"
-    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
-    data-sizes="auto"
-    alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+        <a href="/" title="欢迎来到Sugar的博客小站"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="/logo.png" data-alt="/logo.png" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>
@@ -120,15 +95,15 @@
     <nav>
       <ul class="menu" id="menu-mobile"><li class="search-wrapper">
             <div class="search mobile" id="search-mobile">
-              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
               <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                <i class="fa-solid fa-search fa-fw"></i>
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
               </a>
               <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                <i class="fa-solid fa-times-circle fa-fw"></i>
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
               </a>
               <span class="search-button search-loading" id="search-loading-mobile">
-                <i class="fa-solid fa-spinner fa-fw fa-spin"></i>
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
               </span>
             </div>
             <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
@@ -137,79 +112,51 @@
           </li><li
               class="menu-item"
             ><a
-                class="menu-link"
-                href="/posts/"
-                
-                
-              >文章</a></li><li
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >文章</a></li><li
               class="menu-item"
             ><a
-                class="menu-link"
-                href="/categories/"
-                
-                
-              >分类</a></li><li
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
               class="menu-item"
             ><a
-                class="menu-link"
-                href="/tags/"
-                
-                
-              >标签</a></li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw"></i>
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
         </li></ul>
     </nav>
   </div>
-</header>
-<div class="search-dropdown desktop">
-  <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-  <div id="search-dropdown-mobile"></div>
-</div>
-<main class="container" page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录 <i class="toc-icon fa-solid fa-angle-down fa-fw"></i></h2>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside>
 
   <aside class="aside-custom">
-    
-  </aside>
+    </aside>
 
   <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX">C&#43;&#43;的指针</h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a
-  href="https://github.com/Sugar-27"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer author"
-  
-  
-    class="author"
-  
-  
-><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200"
-    data-srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x"
-    data-sizes="auto"
-    alt="Sugar"
-    title="Sugar" />&nbsp;Sugar</a></span>
-          <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw"></i>&nbsp;C/C++</a></span></div>
-      <div class="post-meta-line"><span title=2022-08-27&#32;18:53:47>
-            <i class="fa-regular fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-27" >2022-08-27</time>
-          </span>&nbsp;<i class="fa-solid fa-pencil-alt fa-fw"></i>&nbsp;约 8056 字&nbsp;
-        <i class="fa-regular fa-clock fa-fw"></i>&nbsp;预计阅读 17 分钟&nbsp;</div>
-    </div><div class="details toc" id="toc-static" kept="false">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>C&#43;&#43;的指针</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Sugar-27" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200" srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x" sizes="auto" data-title="Sugar" data-alt="Sugar" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> C/C++</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-27&#32;18:53:47><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-27">2022-08-27</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 8056 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 17 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
-          <span><i class="details-icon fa-solid fa-angle-right"></i></span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
@@ -265,12 +212,7 @@
     </li>
   </ul>
 </nav></div>
-      </div><div
-      class="content"
-      id="content"
-      
-      
-    ><h1 id="c的指针">C++的指针</h1>
+      </div><div class="content" id="content"><h1 id="c的指针">C++的指针</h1>
 <h2 id="指针的概念">指针的概念</h2>
 <h3 id="c中内存单元内容与地址">C++中内存单元内容与地址</h3>
 <ul>
@@ -836,27 +778,13 @@
 <ul>
 <li>
 <p>起因：如下图所示，两个类中，A中含有类型B的<code>shared_ptr</code>，B中含有类型A的<code>shared_ptr</code>
-<img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png"
-    title="image-20220827175131397" /></p>
+<img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856997.png 2x" sizes="auto" data-title="image-20220827175131397" data-alt="image-20220827175131397" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 <p>这时使用分别<code>new</code>一个类型为A和B的对象A和对象B，并使用ptr A指向对象A，ptrB指向对象B，此时对象A的指针指向对象B，此时对象B的指针指向对象A。当ptrA使用结束时，ptrA释放，对象A的引用计数-1，但因为对象B仍然持有对象A的智能指针，所以引用计数大于0，也就不会析构对象A；接下来ptrB也使用结束，对象B的引用计数-1，但因为之前对象A并没有被析构，因此对象B的引用计数也仍然大于0，因此对象B也没有被析构，这种情况下，ptrA和ptrB都被释放了，但对象A和对象B都没有被析构，同时也没有其他指针指向他们，换言之，已经发生了内存泄漏，因为对象A和对象B不可能再被析构。</p>
 </li>
 <li>
 <p>解决方法：使用<code>weak_ptr</code></p>
 <ul>
-<li><code>weak_ptr</code>被设计用来和<code>shared_ptr</code>一起使用，它工作在观察者模式，对于它指向的对象是一种弱引用，也就是说它可以获得资源的观测权，像旁观者一样观察资源的使用情况，但是弱引用就代表着它不会增加<code>shared_ptr</code>的引用计数，当被观察的<code>shared_ptr</code>失效之后，相应的<code>weak_ptr</code>也就失效了，如下图所示，虚线代表观察，不增加引用计数<img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png"
-    data-srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png 2x"
-    data-sizes="auto"
-    alt="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png"
-    title="image-20220827175241365" /></li>
+<li><code>weak_ptr</code>被设计用来和<code>shared_ptr</code>一起使用，它工作在观察者模式，对于它指向的对象是一种弱引用，也就是说它可以获得资源的观测权，像旁观者一样观察资源的使用情况，但是弱引用就代表着它不会增加<code>shared_ptr</code>的引用计数，当被观察的<code>shared_ptr</code>失效之后，相应的<code>weak_ptr</code>也就失效了，如下图所示，虚线代表观察，不增加引用计数<img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202208271856075.png 2x" sizes="auto" data-title="image-20220827175241365" data-alt="image-20220827175241365" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></li>
 </ul>
 </li>
 <li>
@@ -1357,51 +1285,36 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2022-08-27&#32;18:53:47>更新于 2022-08-27</span>
-      </div>
-      <div class="post-info-license "></div>
-    </div>
+        <span title=2022-08-27&#32;18:53:47>更新于 2022-08-27&nbsp;</span>
+      </div></div>
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span></span>
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" data-title="C&#43;&#43;的指针" data-hashtags="C&#43;&#43;语法"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" data-hashtag="C&#43;&#43;语法"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/" data-title="C&#43;&#43;的指针"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;%E8%AF%AD%E6%B3%95/">C&#43;&#43;语法</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/c&#43;&#43;%E8%AF%AD%E6%B3%95/' class="post-tag">C&#43;&#43;语法</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="prev" rel="prev" title="iOS-UITableView使用指南"><i class="fa-solid fa-angle-left fa-fw"></i>iOS-UITableView使用指南</a>
-      <a href="/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" class="next" rel="next" title="Linux中的信号">Linux中的信号<i class="fa-solid fa-angle-right fa-fw"></i></a></div>
+  <div class="post-nav"><a href="/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-nav-item" rel="prev" title="iOS-UITableView使用指南"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>iOS-UITableView使用指南</a>
+      <a href="/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/" class="post-nav-item" rel="next" title="Linux中的信号">Linux中的信号<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line copyright"><i class="fa-regular fa-copyright fa-fw"></i>
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
-              <a
-  href="https://github.com/Sugar-27"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreffer"
-  
-  
-  
->Sugar</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2022032869号-1</a></span></div></div>
-  </footer></div><div class="widgets">
-  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-      <i class="fa-solid fa-arrow-up fa-fw"></i>
-    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-      <i class="fa-solid fa-comment fa-fw"></i>
-    </a>
-  </div><div id="mask"></div>
-</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js" defer></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js" async defer></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/pangu/pangu.min.js" defer></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"enablePangu":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script type="text/javascript" src="/js/theme.min.js" defer></script></body>
+              <a href="https://github.com/Sugar-27"target="_blank" rel="external nofollow noopener noreferrer">Sugar</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line beian"><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2022032869号-1</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
 </html>

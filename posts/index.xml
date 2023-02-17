@@ -11,68 +11,78 @@
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>现代C&#43;&#43;中的类型推导</title>
   <link>http://sugar-27.github.io/posts/%E7%8E%B0%E4%BB%A3c&#43;&#43;%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/</link>
   <pubDate>Wed, 14 Dec 2022 21:47:38 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/%E7%8E%B0%E4%BB%A3c&#43;&#43;%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>Linux中的信号量</title>
   <link>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F/</link>
   <pubDate>Sat, 03 Sep 2022 15:28:36 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>Linux中的共享内存</title>
   <link>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/</link>
   <pubDate>Sat, 03 Sep 2022 02:22:01 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>Linux中的信号</title>
   <link>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/</link>
   <pubDate>Fri, 02 Sep 2022 11:28:45 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/linux%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>C&#43;&#43;的指针</title>
   <link>http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/</link>
   <pubDate>Sat, 27 Aug 2022 18:53:47 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/c&#43;&#43;%E7%9A%84%E6%8C%87%E9%92%88/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>iOS-UITableView使用指南</title>
   <link>http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
   <pubDate>Wed, 17 Aug 2022 23:43:05 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/ios-uitableview%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
   <description><![CDATA[UITableView使用指南，速查手册，快速上手]]></description>
-</item><item>
+</item>
+<item>
   <title>iOS-UIStackView使用指南</title>
   <link>http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
   <pubDate>Wed, 17 Aug 2022 23:10:32 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/ios-uistackvie%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>字符串算法</title>
   <link>http://sugar-27.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/</link>
   <pubDate>Sun, 12 Jun 2022 23:46:47 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95/</guid>
   <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
   <title>高精度算法模版</title>
   <link>http://sugar-27.github.io/posts/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</link>
   <pubDate>Sun, 12 Jun 2022 16:12:47 &#43;0800</pubDate>
   <author>Sugar</author>
   <guid>http://sugar-27.github.io/posts/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</guid>
   <description><![CDATA[]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>
