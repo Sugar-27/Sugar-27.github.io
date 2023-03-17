@@ -10,7 +10,7 @@
 <meta name="description" content="This is my new Hugo FixIt site" /><meta name="keywords" content='C/C&#43;&#43;' /><meta itemprop="name" content="优先队列">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-06-11T18:47:09+08:00" />
 <meta itemprop="dateModified" content="2022-06-11T18:47:09+08:00" />
-<meta itemprop="wordCount" content="1402"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="wordCount" content="1354"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
 <meta itemprop="keywords" content="C/C&#43;&#43;," /><meta property="og:title" content="优先队列" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -34,7 +34,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/sugar-27.github.io\/posts\/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97\/"
-    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  1402 ,
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  1354 ,
     "url": "http:\/\/sugar-27.github.io\/posts\/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97\/","datePublished": "2022-06-11T18:47:09+08:00","dateModified": "2022-06-11T18:47:09+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -152,7 +152,7 @@
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Sugar-27" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200" srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x" sizes="auto" data-title="Sugar" data-alt="Sugar" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;Sugar</a></span>
           <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> C/C++</a></span></div>
-      <div class="post-meta-line"><span title=2022-06-11&#32;18:47:09><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-06-11">2022-06-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1402 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2022-06-11&#32;18:47:09><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-06-11">2022-06-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1354 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -189,32 +189,32 @@
 </blockquote>
 <h2 id="使用">使用</h2>
 <blockquote>
-<p><strong>首先要包含头文件</strong>****, 他和<code>queue</code>不同的就在于我们可以自定义其中数据的优先级, 让优先级高的排在队列前面,优先出队。</p>
+<p><strong>首先要包含头文件</strong><code>#include &lt;queue&gt;</code>, 他和<code>queue</code>不同的就在于我们可以自定义其中数据的优先级, 让优先级高的排在队列前面,优先出队。</p>
 </blockquote>
 <p>⚠️：优先队列具有队列的所有特性，包括队列的基本操作，只是在这基础上添加了内部的一个排序，它本质是一个堆实现的。</p>
 <h3 id="基本操作">基本操作</h3>
 <p>和队列基本操作相同:</p>
 <ul>
 <li>
-<p>top 访问队头元素</p>
+<p><code>top</code>访问队头元素</p>
 </li>
 <li>
-<p>empty 队列是否为空</p>
+<p><code>empty</code>队列是否为空</p>
 </li>
 <li>
-<p>size 返回队列内元素个数</p>
+<p><code>size</code>返回队列内元素个数</p>
 </li>
 <li>
-<p>push 插入元素到队尾 (并排序)</p>
+<p><code>push</code>插入元素到队尾 (并排序)</p>
 </li>
 <li>
-<p>emplace 原地构造一个元素并插入队列</p>
+<p><code>emplace</code>原地构造一个元素并插入队列</p>
 </li>
 <li>
-<p>pop 弹出队头元素</p>
+<p><code>pop</code>弹出队头元素</p>
 </li>
 <li>
-<p>swap 交换内容</p>
+<p><code>swap</code>交换内容</p>
 </li>
 </ul>
 <h3 id="定义初始化">定义（初始化）</h3>
@@ -233,9 +233,9 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//升序队列，小顶堆
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">priority_queue</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">priority_queue</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//降序队列，大顶堆
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">priority_queue</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="n">q</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">priority_queue</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="n">q</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//greater和less是std实现的两个仿函数（就是使一个类的使用看上去像一个函数。
 </span></span></span><span class="line"><span class="cl"><span class="c1">//其实现就是类中实现一个operator()，这个类就有了类似函数的行为，就是一个仿函数类了）
 </span></span></span></code></pre></td></tr></table>
@@ -281,51 +281,39 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//对于基础类型 默认是大顶堆
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//等同于 priority_queue&lt;int, vector&lt;int&gt;, less&lt;int&gt; &gt; a;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//      这里一定要有空格，不然成了右移运算符↓↓
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>  <span class="c1">//这样就是小顶堆
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">//等同于 priority_queue&lt;int, vector&lt;int&gt;, less&lt;int&gt; &gt; a;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">;</span>  <span class="c1">//这样就是小顶堆
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">c</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">c</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&#34;abc&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&#34;abcd&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&#34;cbd&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&#34;abc&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&#34;abcd&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&#34;cbd&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">b</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -340,13 +328,11 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl"><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
-</span></span><span class="line"><span class="cl"><span class="n">cbd</span> <span class="n">abcd</span> <span class="n">abc</span>
-</span></span><span class="line"><span class="cl"><span class="err">请按任意键继续</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+</span></span><span class="line"><span class="cl">cbd abcd abc
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="用pair做优先队列的元素">用pair做优先队列的元素</h3>
@@ -380,18 +366,18 @@
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -404,13 +390,11 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="mi">2</span> <span class="mi">5</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mi">3</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="err">请按任意键继续</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="m">2</span> <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">2</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="自定义pair比较规则">自定义pair比较规则</h4>
@@ -420,37 +404,31 @@
 <p>定义比较类，重构operator()</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 优先队列中使用 pair , 自定义排序
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 优先队列中使用 pair, 自定义排序
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define pii pair&lt;int,int&gt;
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="nc">cmp</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">pii</span> <span class="n">p1</span><span class="p">,</span><span class="k">const</span> <span class="n">pii</span> <span class="n">p2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">cmp</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">pii</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">pii</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 大于号是小顶堆，小于号是大顶堆
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">first</span> <span class="o">&gt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>         <span class="c1">// first 小的先弹出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">first</span> <span class="o">&gt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">first</span><span class="p">;</span><span class="c1">// first 小的先弹出
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pii</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="p">,</span><span class="n">cmp</span><span class="o">&gt;</span> <span class="n">Q</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
-<p>定义比较函数</p>
+<p>定义比较函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -461,7 +439,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 编写比较规则cmp，要求x.first/x.second &lt; y.first/y.second
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// 编写比较规则cmp，要求x.first/x.second &lt; y.first/y.second
 </span></span></span><span class="line"><span class="cl"><span class="c1">// ⚠️：这里比较规则与实际编写的是反向的
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">cmp</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">first</span><span class="p">]</span> <span class="o">*</span> <span class="n">arr</span><span class="p">[</span><span class="n">y</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">*</span> <span class="n">arr</span><span class="p">[</span><span class="n">y</span><span class="p">.</span><span class="n">first</span><span class="p">];</span>
@@ -520,38 +498,32 @@
 </span><span class="lnt">44
 </span><span class="lnt">45
 </span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//方法1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">tmp1</span> <span class="c1">//运算符重载&lt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//方法1-运算符重载&lt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">tmp1</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">tmp1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">;}</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">tmp1</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="k">const</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">tmp1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">tmp1</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="c1">//大顶堆
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//方法2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">tmp2</span> <span class="c1">//重写仿函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">operator</span><span class="p">()</span> <span class="p">(</span><span class="n">tmp1</span> <span class="n">a</span><span class="p">,</span> <span class="n">tmp1</span> <span class="n">b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//方法2-重写仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">tmp2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">operator</span><span class="p">()(</span><span class="n">tmp1</span> <span class="n">a</span><span class="p">,</span> <span class="n">tmp1</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="c1">//大顶堆
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">tmp1</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">tmp1</span> <span class="n">b</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">tmp1</span> <span class="n">c</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
@@ -559,8 +531,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">d</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">d</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">d</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -570,8 +541,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -588,17 +558,15 @@
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="mi">3</span>
-</span></span><span class="line"><span class="cl"><span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="m">3</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="mi">3</span>
-</span></span><span class="line"><span class="cl"><span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="err">请按任意键继续</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="m">3</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
@@ -636,5 +604,5 @@
         </div></div><div id="mask"></div><noscript>
     <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
   </noscript>
-</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":1,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":1,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
 </html>
