@@ -5,6 +5,14 @@
     <description>C/C&#43;&#43; - 分类 - 欢迎来到Sugar的博客小站</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>45682h@mail.com (Sugar)</managingEditor>
       <webMaster>45682h@mail.com (Sugar)</webMaster><atom:link href="http://sugar-27.github.io/categories/c/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+  <title>C&#43;&#43;如何打印虚函数表的地址</title>
+  <link>http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/</link>
+  <pubDate>Fri, 14 Apr 2023 21:34:43 &#43;0800</pubDate>
+  <author>Sugar</author>
+  <guid>http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>现代C&#43;&#43;中的类型推导</title>
   <link>http://sugar-27.github.io/posts/%E7%8E%B0%E4%BB%A3c&#43;&#43;%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/</link>
   <pubDate>Wed, 14 Dec 2022 21:47:38 &#43;0800</pubDate>

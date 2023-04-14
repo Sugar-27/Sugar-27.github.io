@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>C&#43;&#43;如何打印虚函数表的地址 - 欢迎来到Sugar的博客小站</title><meta name="author" content="Sugar">
+<meta name="author-link" content="https://github.com/Sugar-27">
+<meta name="description" content="This is my new Hugo FixIt site" /><meta name="keywords" content='C/C&#43;&#43;' /><meta itemprop="name" content="C&#43;&#43;如何打印虚函数表的地址">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-04-14T21:34:43+08:00" />
+<meta itemprop="dateModified" content="2023-04-14T21:34:43+08:00" />
+<meta itemprop="wordCount" content="2548"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="keywords" content="C/C&#43;&#43;," /><meta property="og:title" content="C&#43;&#43;如何打印虚函数表的地址" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/" /><meta property="og:image" content="http://sugar-27.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-14T21:34:43+08:00" />
+<meta property="article:modified_time" content="2023-04-14T21:34:43+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://sugar-27.github.io/logo.png"/>
+
+<meta name="twitter:title" content="C&#43;&#43;如何打印虚函数表的地址"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/" /><link rel="prev" href="http://sugar-27.github.io/posts/%E4%BB%8Ec&#43;&#43;%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%88%B0%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E7%9A%84%E6%9E%84%E5%BB%BA/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "C++如何打印虚函数表的地址",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80\/"
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  2548 ,
+    "url": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80\/","datePublished": "2023-04-14T21:34:43+08:00","dateModified": "2023-04-14T21:34:43+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Sugar"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="欢迎来到Sugar的博客小站"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="欢迎来到Sugar的博客小站" data-alt="欢迎来到Sugar的博客小站" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >标签</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="欢迎来到Sugar的博客小站"><img loading="lazy" src="/logo.png" srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" sizes="auto" data-title="/logo.png" data-alt="/logo.png" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Sugar的博客小站</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >标签</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>C&#43;&#43;如何打印虚函数表的地址</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Sugar-27" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200" srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x" sizes="auto" data-title="Sugar" data-alt="Sugar" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;Sugar</a></span>
+          <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> C/C++</a></span></div>
+      <div class="post-meta-line"><span title=2023-04-14&#32;21:34:43><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-14">2023-04-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2548 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#c打印虚函数表地址">C++打印虚函数表地址</a>
+      <ul>
+        <li><a href="#引入">引入</a></li>
+        <li><a href="#虚函数介绍">虚函数介绍</a></li>
+        <li><a href="#如何打印虚函数表">如何打印虚函数表</a>
+          <ul>
+            <li><a href="#来看一下如何打印虚函数表吧">来看一下如何打印虚函数表吧～</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="c打印虚函数表地址">C++打印虚函数表地址</h2>
+<h3 id="引入">引入</h3>
+<p>今天面试被问了一个问题，非常有意思：</p>
+<blockquote>
+<p>对于存在虚函数的类，如何打印虚函数表的地址，并利用这个虚函数表的地址来执行该类中的虚函数</p>
+</blockquote>
+<p>面试时候懵逼了，从来没思考过这个问题，结束之后重新充电，分享在这里，还是很有意思的一个实验</p>
+<h3 id="虚函数介绍">虚函数介绍</h3>
+<p>先简单来讲一下虚函数的概念。</p>
+<p>要理解虚函数的概念，先要明确什么是静态类型，什么是动态类型，静态类型可以直观理解为声明时使用的类型，其在编译期间就已经确定，所谓动态类型则在程序运行时才具体表现其类型，在编译期间是不能确定的。</p>
+<p>C++中的多态通过虚函数实现，而虚函数通过虚函数表和虚函数表指针实现，利用基类的指针指向派生类，可以调用派生类对应的虚函数，多个不同的派生类可以在运行期间表现出不同的表现，简单示例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">fun1</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base fun1&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">fun2</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base fun2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ChildA</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">fun1</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ChildA fun1&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">fun2</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ChildA fun2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ChildB</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">fun1</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ChildB fun1&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">fun2</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ChildB fun2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里先定义三个类，继承关系为ChildA与ChildB均<code>public</code>继承Base类，接下来使用基类函数分别去指向三个类对象并执行虚函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span> <span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Base</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span> <span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChildA</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span> <span class="o">*</span><span class="n">ptr3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChildB</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ptr1</span><span class="o">-&gt;</span><span class="n">fun1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptr2</span><span class="o">-&gt;</span><span class="n">fun1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptr3</span><span class="o">-&gt;</span><span class="n">fun1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ptr1</span><span class="o">-&gt;</span><span class="n">fun2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptr2</span><span class="o">-&gt;</span><span class="n">fun2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptr3</span><span class="o">-&gt;</span><span class="n">fun2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">ptr1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">ptr2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">ptr3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Base fun1
+</span></span><span class="line"><span class="cl">ChildA fun1
+</span></span><span class="line"><span class="cl">ChildB fun1
+</span></span><span class="line"><span class="cl">Base fun2
+</span></span><span class="line"><span class="cl">ChildA fun2
+</span></span><span class="line"><span class="cl">ChildB fun2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到，虽然三个指针都是Base类型的指针，但执行的函数并不相同，这就是虚函数实现的多态：对于相同的请求可以给出不同的反应，执行不同的计划。</p>
+<p>简单阐述一下实现原理：</p>
+<p>在有虚函数的类中，虚函数用<code>virtual</code>关键字修饰，编译器在遇到有虚函数的类后，会为这个类型创建虚函数表（<strong>所谓虚函数表根据编译器的不同实现也不同，从原理上可以认为是一个函数指针数组</strong>），以及一个指向这个虚函数表的虚函数表指针，然后再将这个指针存储到类中，在实际运行中，如果执行的是虚函数则会先通过找到虚函数表，再在虚函数表中找到对应的虚函数的函数指针来执行。</p>
+<p>而对于继承这个拥有虚函数的子类来说，在继承的时候会一并继承基类的虚函数表以及虚函数指针，可以使用<code>override</code>来对虚函数进行覆盖，当进行覆盖后则虚函数表中原来存储基类虚函数的函数指针会被替换为子类<code>override</code>后的函数指针，这样当找到子类的虚函数时执行的就是子类自己定义的虚函数。</p>
+<p>对于继承关系，可以简单归纳为：</p>
+<ol>
+<li>一般继承时，子类的虚函数表中会先将基类的虚函数放在最前面，再放自己的虚函数指针</li>
+<li>如果子类覆盖了基类的虚函数，则该虚函数将被放到虚函数表中<strong>原来基类虚函数</strong>的位置</li>
+<li>对于多继承的情况，每个基类都拥有自己的虚函数表，<strong>子类自身的虚函数将被放到第一个基类的表中</strong>，也就是说当类存在多重继承情况时，其实例对象的内存结构里并不只保存一个虚函数表指针，而是有几个基类就会保存几个虚函数表指针</li>
+</ol>
+<p>针对上面第三种情况，给一个示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">func_a</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">func_b</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">func_c</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于类C，其内存分布如下图：</p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304142256911.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304142256911.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304142256911.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304142256911.png 2x" sizes="auto" data-title="image-20230414225620846" data-alt="image-20230414225620846" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<h3 id="如何打印虚函数表">如何打印虚函数表</h3>
+<p>要想知道如何打印虚函数表，首先要确定虚函数表位于类的什么位置，因此我们来用一个例子来具体看一下一个拥有虚函数的类的内存分布到底是什么样子：</p>
+<p>首先创建一个类，这个类拥有两个虚函数以及一个成员变量，并在主函数中创建这样一个类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Test</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">v_func</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">Test</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">m_test</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Test</span><span class="o">*</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Test</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个类的内存中的分布大致如下：</p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150157151.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150157151.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150157151.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150157151.png 2x" sizes="auto" data-title="image-20230415015711111" data-alt="image-20230415015711111" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<ul>
+<li>首先创建的Test*对象位于栈上，指向一个堆中对应的Test实例</li>
+<li>对象Test的<em><strong>头部</strong></em>是一个虚函数表指针，紧接着是Test对象<strong>按照声明顺序排列的成员变量</strong>（当创建一个对象时，可以通过实例对象的地址，得到该实例的虚函数表，从而获取其函数指针）</li>
+<li>虚函数表指针指向的是代码段中Test类型的<strong>虚函数表中的第一个虚函数起始地址</strong></li>
+<li>在虚函数表中会构建两个虚析构函数，因为对象有两种构造方式，栈上构造和堆上构造，对于栈上构造的对象其析构不需要执行对应的delete函数，会自动被回收</li>
+<li>typeinfo存储着Test的类基础信息，包括父类与类名称，C++关键字typeid返回的也就是这个对象</li>
+<li>typeinfo本质也是一个类，对于没有父类的Test类来说，当前的tinfo是class_type_info类型</li>
+</ul>
+<p>最后重新再把虚表摘出来，其内部结构如下：</p>
+<p><img loading="lazy" src="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150147758.png" srcset="https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150147758.png, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150147758.png 1.5x, https://sugar-pictures.oss-cn-shanghai.aliyuncs.com/202304150147758.png 2x" sizes="auto" data-title="image-20230415014732718" data-alt="image-20230415014732718" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
+<ul>
+<li>常规认知中的虚函数表并不是单独存在的，而是虚表的一部分，橘色框中的内容即之前理解的虚函数表，其中存放的是虚函数指针</li>
+<li>紫色框中的是虚函数的一些基本信息：
+<ul>
+<li>offset to top指的是这个表到对象起始位置的偏移值，只有多重继承的情形才有可能不为0，单继承或者无继承的情况下都是0</li>
+<li>RTTI information是一个对象指针，它用于唯一的标识该类型</li>
+</ul>
+</li>
+<li>蓝色框中的内容仅限于虚拟继承的情况（若无虚拟继承，则无此内容）</li>
+</ul>
+<h4 id="来看一下如何打印虚函数表吧">来看一下如何打印虚函数表吧～</h4>
+<p>这里拿出前面总结中最重要的两点</p>
+<blockquote>
+<ul>
+<li>对象Test的<em><strong>头部</strong></em>是一个虚函数表指针，紧接着是Test对象<strong>按照声明顺序排列的成员变量</strong>（当创建一个对象时，可以通过实例对象的地址，得到该实例的虚函数表，从而获取其函数指针）</li>
+<li>虚函数表指针指向的是代码段中Test类型的<strong>虚函数表中的第一个虚函数起始地址</strong></li>
+</ul>
+</blockquote>
+<p>可以很简单理解为，类中有一个虚函数表指针，该指针位于类的最前面即首地址处，而虚函数表指针则指向了第一个虚函数。</p>
+<p>因此还是这个基本类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">fun1</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base fun1&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">fun2</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base fun2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要想打印这个类的虚函数表，可以采用如下方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">FUNC</span> <span class="o">=</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Base</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 将b的地址转换成long long型，因为在64位编译器上面，指针占用8个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// b是指向虚函数表的指针的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 对tmp解引用，得到虚函数表的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="o">*</span><span class="n">vptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="n">tmp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;虚函数表的地址为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">vptr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 虚函数表中第一个方法，继承于父类的虚函数fun1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">FUNC</span> <span class="n">fun1</span> <span class="o">=</span> <span class="p">(</span><span class="n">FUNC</span><span class="p">)</span> <span class="o">*</span><span class="n">vptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 虚函数表中第二个方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">FUNC</span> <span class="n">fun2</span> <span class="o">=</span> <span class="p">(</span><span class="n">FUNC</span><span class="p">)</span> <span class="o">*</span><span class="p">(</span><span class="n">vptr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">fun1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fun2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终执行结果为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">虚函数表的地址为：0x104cb42c8
+</span></span><span class="line"><span class="cl">Base fun1
+</span></span><span class="line"><span class="cl">Base fun2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到，打印出来了虚函数表的地址，并且可以直接通过这个地址区调用对应的虚函数</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-04-14&#32;21:34:43>更新于 2023-04-14&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/" data-title="C&#43;&#43;如何打印虚函数表的地址" data-hashtags="C/C&#43;&#43;"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/" data-hashtag="C/C&#43;&#43;"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://sugar-27.github.io/posts/c&#43;&#43;%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80/" data-title="C&#43;&#43;如何打印虚函数表的地址"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/c/c&#43;&#43;/' class="post-tag">C/C&#43;&#43;</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/%E4%BB%8Ec&#43;&#43;%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%88%B0%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E7%9A%84%E6%9E%84%E5%BB%BA/" class="post-nav-item" rel="prev" title="从C&#43;&#43;的单例模式到任务队列的构建"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>从C&#43;&#43;的单例模式到任务队列的构建</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright order-1" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://github.com/Sugar-27"target="_blank" rel="external nofollow noopener noreferrer">Sugar</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中……'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i><span class="run-times ms-1">网站运行中……</span></span></div><div class="footer-line beian order-last"><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2022032869号-1</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":1,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"siteTime":"2022-06-10T21:30:00+08:00"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
