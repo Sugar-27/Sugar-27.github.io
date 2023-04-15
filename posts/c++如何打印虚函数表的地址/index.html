@@ -10,7 +10,7 @@
 <meta name="description" content="This is my new Hugo FixIt site" /><meta name="keywords" content='C/C&#43;&#43;' /><meta itemprop="name" content="C&#43;&#43;如何打印虚函数表的地址">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-04-14T21:34:43+08:00" />
 <meta itemprop="dateModified" content="2023-04-14T21:34:43+08:00" />
-<meta itemprop="wordCount" content="2794"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="wordCount" content="2912"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
 <meta itemprop="keywords" content="C/C&#43;&#43;," /><meta property="og:title" content="C&#43;&#43;如何打印虚函数表的地址" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -34,7 +34,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80\/"
-    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  2794 ,
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  2912 ,
     "url": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80\/","datePublished": "2023-04-14T21:34:43+08:00","dateModified": "2023-04-14T21:34:43+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -152,7 +152,7 @@
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Sugar-27" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200" srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x" sizes="auto" data-title="Sugar" data-alt="Sugar" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;Sugar</a></span>
           <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> C/C++</a></span></div>
-      <div class="post-meta-line"><span title=2023-04-14&#32;21:34:43><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-14">2023-04-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2794 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2023-04-14&#32;21:34:43><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-14">2023-04-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2912 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -486,7 +486,25 @@
 </span></span><span class="line"><span class="cl">clang -Xclang -fdump-vtable-layouts -stdlib<span class="o">=</span>libc++ -c main.cpp <span class="c1"># 查看虚函数表布局</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>执行结果如下（只展示虚函数表部分）：</p>
+</div><p>对象布局结果如下（只展示Base部分）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">*** Dumping AST Record Layout
+</span></span><span class="line"><span class="cl">         <span class="m">0</span> <span class="p">|</span> class Base
+</span></span><span class="line"><span class="cl">         <span class="m">0</span> <span class="p">|</span>   <span class="o">(</span>Base vtable pointer<span class="o">)</span>
+</span></span><span class="line"><span class="cl">           <span class="p">|</span> <span class="o">[</span><span class="nv">sizeof</span><span class="o">=</span>8, <span class="nv">dsize</span><span class="o">=</span>8, <span class="nv">align</span><span class="o">=</span>8,
+</span></span><span class="line"><span class="cl">           <span class="p">|</span>  <span class="nv">nvsize</span><span class="o">=</span>8, <span class="nv">nvalign</span><span class="o">=</span>8<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个含有虚函数的Base类大小为8，因为只有一个虚函数指针，在对象的头部，前8个字节是虚函数表的指针，指向虚函数的相应函数指针地址。</p>
+<p>虚函数表布局执行结果如下（只展示虚函数表部分）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
