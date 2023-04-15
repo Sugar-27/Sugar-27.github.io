@@ -10,7 +10,7 @@
 <meta name="description" content="This is my new Hugo FixIt site" /><meta name="keywords" content='C/C&#43;&#43;' /><meta itemprop="name" content="C&#43;&#43;如何打印虚函数表的地址">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-04-14T21:34:43+08:00" />
 <meta itemprop="dateModified" content="2023-04-14T21:34:43+08:00" />
-<meta itemprop="wordCount" content="2912"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
+<meta itemprop="wordCount" content="2979"><meta itemprop="image" content="http://sugar-27.github.io/logo.png"/>
 <meta itemprop="keywords" content="C/C&#43;&#43;," /><meta property="og:title" content="C&#43;&#43;如何打印虚函数表的地址" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -34,7 +34,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80\/"
-    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  2912 ,
+    },"image": ["http:\/\/sugar-27.github.io\/icon-512.png"],"genre": "posts","keywords": "C\/C\u002b\u002b","wordcount":  2979 ,
     "url": "http:\/\/sugar-27.github.io\/posts\/c\u002b\u002b%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80\/","datePublished": "2023-04-14T21:34:43+08:00","dateModified": "2023-04-14T21:34:43+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -152,7 +152,7 @@
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Sugar-27" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200" srcset="https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 1.5x, https://cn.gravatar.com/userimage/222788042/d8c06db706bb351ac77574ee6b8112d0.jpg?size=200 2x" sizes="auto" data-title="Sugar" data-alt="Sugar" class="avatar" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/>&nbsp;Sugar</a></span>
           <span class="post-category">收录于 <a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> C/C++</a></span></div>
-      <div class="post-meta-line"><span title=2023-04-14&#32;21:34:43><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-14">2023-04-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2912 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2023-04-14&#32;21:34:43><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-14">2023-04-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2979 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -425,8 +425,8 @@
 <li>常规认知中的虚函数表并不是单独存在的，而是虚表的一部分，橘色框中的内容即之前理解的虚函数表，其中存放的是虚函数指针</li>
 <li>紫色框中的是虚函数的一些基本信息：
 <ul>
-<li>offset to top指的是这个表到对象起始位置的偏移值，只有多重继承的情形才有可能不为0，单继承或者无继承的情况下都是0</li>
-<li>RTTI information是一个对象指针，它用于唯一的标识该类型</li>
+<li>offset to top指的是这个表到对象起始位置（即内存顶部）的偏移值，只有多重继承的情形才有可能不为0，单继承或者无继承的情况下都是0</li>
+<li>RTTI information是一个对象指针，它用于唯一的标识该类型，指向存储运行时类型信息(type_info)的地址，用于运行时进行类型识别，用于<code>typeid</code>和<code>dynamic_cast</code></li>
 </ul>
 </li>
 <li>蓝色框中的内容仅限于虚拟继承的情况（若无虚拟继承，则无此内容）</li>
